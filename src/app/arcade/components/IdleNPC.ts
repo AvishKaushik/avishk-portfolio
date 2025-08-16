@@ -1,3 +1,4 @@
+import { SoundManager } from './SoundManager';
 /* app/arcade/components/IdleNPC.ts – v2
    Static NPC that speaks once when player ENTERS range; stays quiet until
    player EXITS and re‑enters. Uses SpeechBubble for minimal UI. */
@@ -15,6 +16,7 @@ export class IdleNPC {
   private sprite: Phaser.GameObjects.Sprite;
   private zone: Phaser.GameObjects.Zone;
   private player!: Phaser.Physics.Arcade.Sprite;
+  private soundManager?: SoundManager;
 
   private bubble?: SpeechBubble;
   private lines: { speaker: string; text: string; }[];
@@ -29,10 +31,12 @@ export class IdleNPC {
     y: number,
     texture: string,
     lines: { speaker: string; text: string; }[],
-    faceLeft: boolean = false // ⬅️ new optional param
+    soundManager: SoundManager,
+    faceLeft: boolean = false
   ) {
     this.scene = scene;
     this.lines = lines;
+    this.soundManager = soundManager;
 
     // NPC sprite (idle frame)
     this.sprite = scene.add.sprite(x, y, texture).setOrigin(0.5, 1);
@@ -78,6 +82,12 @@ export class IdleNPC {
   private startConversation() {
     this.inConversation = true;
     this.index = 0;
+    
+    // Play interaction sound
+    if (this.soundManager) {
+      this.soundManager.playSFX('npc-interact-sfx');
+    }
+    
     this.showNextLine();
   }
 

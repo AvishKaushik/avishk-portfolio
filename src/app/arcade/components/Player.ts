@@ -6,11 +6,13 @@ import {
   CharacterMeta,
   createCharacterAnimations,
 } from "@/app/arcade/components/characters";
+import { SoundManager } from "./SoundManager";
 
 export class Player {
   private scene: Phaser.Scene;
   private sprite: Phaser.Physics.Arcade.Sprite;
   private meta: CharacterMeta;
+  private soundManager?: SoundManager;
 
   private cursors: Phaser.Types.Input.Keyboard.CursorKeys;
   private runKey: Phaser.Input.Keyboard.Key;
@@ -26,15 +28,21 @@ export class Player {
     scene: Phaser.Scene,
     x: number,
     y: number,
-    characterKey: string = characters[0].key
+    characterKey: string = characters[0].key,
+    soundManager: SoundManager
   ) {
     this.scene = scene;
     this.meta = characters.find((c) => c.key === characterKey)!;
 
     createCharacterAnimations(scene);
 
+    this.soundManager = soundManager;
+
     this.sprite = scene.physics.add.sprite(x, y, `${characterKey}-idle`, 0);
     this.sprite.setCollideWorldBounds(true).setDepth(20);
+    
+    // Ensure the sprite stays within reasonable bounds
+    (this.sprite.body as Phaser.Physics.Arcade.Body)?.setMaxVelocity(800, 2000);
 
     // Smart body box (35%×70%)
     const sheet = this.meta.actions.idle;
@@ -59,6 +67,7 @@ export class Player {
   setLadderGroup(group: Phaser.Physics.Arcade.StaticGroup) {
     this.ladderGroup = group;
   }
+
 
   getSprite() {
     return this.sprite;
@@ -103,6 +112,12 @@ export class Player {
       this.attackCooldown = true;
       body.setVelocityX(0);
       this.sprite.anims.play(`${this.meta.key}-attack`, true);
+      
+      // Play attack sound
+      if (this.soundManager) {
+        this.soundManager.playSFX('attack-sfx');
+      }
+      
       this.sprite.once(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
         this.isAttacking = false;
         this.scene.time.delayedCall(150, () => (this.attackCooldown = false));
@@ -126,6 +141,11 @@ export class Player {
       body.setVelocityY(-520);
       this.inAir = true;
       this.playAnim('jump');
+      
+      // Play jump sound
+      if (this.soundManager) {
+        this.soundManager.playSFX('jump-sfx');
+      }
     }
 
     // ── Air/ground state ────────────────────────────────

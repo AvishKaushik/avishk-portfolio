@@ -196,7 +196,7 @@ export default function AboutSection() {
       </div>
 
       <div className="about-bio space-y-4 mt-20 grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10">
-        <div className="about-circles relative flex items-center justify-center overflow-visible md:w-full h-[550px] justify-self-center">
+        <div className="orbit-wrapper about-circles relative flex items-center justify-center overflow-visible md:w-full h-[550px] justify-self-center">
           <OrbitingCircles radius={180} className="h-[400px] w-[400px]">
             {orbitIcons.map((icon, i) => (
               <div

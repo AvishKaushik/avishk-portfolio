@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "../styles/enhanced-animations.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import '@fontsource/share-tech-mono';
 

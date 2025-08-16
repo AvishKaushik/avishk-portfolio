@@ -18,25 +18,11 @@ interface Milestone {
 
 const milestones: Milestone[] = [
   {
-    title: "St. Theresa School",
-    description: "12th Grade CBSE — 84.8%",
-    date: "May 2018",
+    title: "M.S. @ George Washington University",
+    description: "Specializing in Theory and Algorithms",
+    date: "Aug 2024",
     type: "education",
     icon: <School className="w-4 h-4" />,
-  },
-  {
-    title: "B. Tech @ VIT Bhopal",
-    description: "B.Tech Computer Science (CGPA 9.06)",
-    date: "Aug 2018 – Jul 2022",
-    type: "education",
-    icon: <GraduationCap className="w-4 h-4" />,
-  },
-  {
-    title: "Software Engineer Intern @ Kogniti",
-    description: "Built an interactive educational game using React to enhance learning engagement.",
-    date: "Oct 2021 – Jan 2022",
-    type: "work",
-    icon: <Briefcase className="w-4 h-4" />,
   },
   {
     title: "Software Engineer @ Societe Generale",
@@ -46,9 +32,23 @@ const milestones: Milestone[] = [
     icon: <Briefcase className="w-4 h-4" />,
   },
   {
-    title: "M.S. @ George Washington University",
-    description: "Specializing in Theory and Algorithms",
-    date: "Aug 2024",
+    title: "Software Engineer Intern @ Kogniti",
+    description: "Built an interactive educational game using React to enhance learning engagement.",
+    date: "Oct 2021 – Jan 2022",
+    type: "work",
+    icon: <Briefcase className="w-4 h-4" />,
+  },
+  {
+    title: "B. Tech @ VIT Bhopal",
+    description: "B.Tech Computer Science (CGPA 9.06)",
+    date: "Aug 2018 – Jul 2022",
+    type: "education",
+    icon: <GraduationCap className="w-4 h-4" />,
+  },
+  {
+    title: "St. Theresa School",
+    description: "12th Grade CBSE — 84.8%",
+    date: "May 2018",
     type: "education",
     icon: <School className="w-4 h-4" />,
   },

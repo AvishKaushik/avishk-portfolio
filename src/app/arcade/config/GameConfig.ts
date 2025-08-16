@@ -7,7 +7,7 @@ export const GameConfig = {
   PLAYER_SPEED: 660,
   PLAYER_JUMP_VELOCITY: -1960,
   GRAVITY: 980,
-  
+
   // Coin positions
   COIN_POSITIONS: [
     [400, 0], // Will be adjusted with screen height
@@ -17,7 +17,7 @@ export const GameConfig = {
     [2800, 0],
     [3200, 0],
   ],
-  
+
   // Platform positions
   PLATFORM_POSITIONS: [
     [300, -120],
@@ -26,10 +26,10 @@ export const GameConfig = {
     [1800, -150],
     [2500, -200],
   ],
-  
+
   // Section spacing (distance between sections)
   SECTION_SPACING: 800,
-  
+
   // Visual settings
   PARTICLE_FREQUENCY: 300,
   CLOUD_COUNT: 8,
@@ -37,22 +37,24 @@ export const GameConfig = {
     CLOUDS: 10000,
     MOUNTAINS: 15000,
   },
-  
+
   // Responsive breakpoints
   BREAKPOINTS: {
     MOBILE: 768,
     TABLET: 1024,
   },
-  
+
   // Colors
   COLORS: {
-    PRIMARY: "#5c94fc",
-    SECONDARY: "#4a7bc8",
+    PRIMARY: "#1e40af", // Enhanced blue
+    SECONDARY: "#3b82f6",
+    ACCENT: "#10b981", // Green accent
     TEXT: "#fff",
-    GLOW: "#ffff00",
-    NPC_COLORS: ["#fff", "#ff0", "#0ff", "#f0f", "#ff6b6b"],
+    GLOW: "#fbbf24", // Golden glow
+    NPC_COLORS: ["#fff", "#fbbf24", "#06b6d4", "#a855f7", "#ef4444"],
+    PARTICLE: "#10b981",
   },
-  
+
   // Fonts
   FONTS: {
     PRIMARY: "PressStart2P, monospace",
@@ -63,4 +65,4 @@ export const GameConfig = {
       NPC: "16px",
     },
   },
-} as const; 
+} as const;

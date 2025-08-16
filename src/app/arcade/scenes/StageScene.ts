@@ -12,12 +12,14 @@ import { ExperienceBoard } from "../components/ExperienceBoard";
 import { SectionSign } from "../components/SectionSign";
 import { EducationPodium } from "../components/EducationPodium";
 import { SpecialLinkBrick } from "../components/SpecialLinkBrick";
+import { SoundManager } from "../components/SoundManager";
 
 export class StageScene extends Phaser.Scene {
   private player!: Player;
   private background!: Background;
   private ground!: Phaser.Physics.Arcade.StaticGroup;
   private platforms!: Phaser.Physics.Arcade.StaticGroup;
+  private soundManager!: SoundManager;
 
   private readonly LEVEL_WIDTH = 10000;
 
@@ -25,7 +27,20 @@ export class StageScene extends Phaser.Scene {
     super("Stage");
   }
 
+  init(data: { soundManager: SoundManager }) {
+    if (data.soundManager) {
+      this.soundManager = data.soundManager;
+    } else {
+      // Fallback: create a new SoundManager if none passed
+      this.soundManager = new SoundManager(this);
+      this.soundManager.createSounds();
+    }
+  }
+
   create() {
+    this.soundManager.createSounds();
+    this.soundManager?.stopAllMusic();
+    this.soundManager.playMusic("game-music");
     const { height } = this.scale;
 
     const ring = new TechRing(
@@ -74,7 +89,7 @@ export class StageScene extends Phaser.Scene {
       // Pick a character
       const groundY = height - 200; // adjust so feet touch tiles
       // this.player = new Player(this, 200, groundY, "pixelHero");
-      this.player = new Player(this, 100, height - 1000, "pixelHero");
+      this.player = new Player(this, 9000, height - 1000, "pixelHero", this.soundManager);
       const playerSprite = this.player.getSprite();
       const skills = [
         { name: "Java", score: 5 },
@@ -128,7 +143,11 @@ export class StageScene extends Phaser.Scene {
           url: "https://avishkaushik.github.io/EduHub/",
           imageKey: "eduhub",
         },
-        { title: "SDG3 Classifier", url: "https://sdg3-classifier.vercel.app/", imageKey: "sdg3" },
+        {
+          title: "SDG3 Classifier",
+          url: "https://sdg3-classifier.vercel.app/",
+          imageKey: "sdg3",
+        },
         {
           title: "Portfolio v3",
           url: "#",
@@ -183,7 +202,8 @@ export class StageScene extends Phaser.Scene {
         400,
         height - 96,
         "intro_npc",
-        npcDialogues.intro
+        npcDialogues.intro,
+        this.soundManager
       );
       introNPC.setPlayer(playerSprite);
 
@@ -193,7 +213,8 @@ export class StageScene extends Phaser.Scene {
         1440,
         height - 224,
         "about_npc",
-        npcDialogues.aboutGate
+        npcDialogues.aboutGate,
+        this.soundManager
       );
       aboutNPC.setPlayer(playerSprite);
 
@@ -203,7 +224,8 @@ export class StageScene extends Phaser.Scene {
         2784,
         height - 352,
         "education_npc",
-        npcDialogues.eduGate
+        npcDialogues.eduGate,
+        this.soundManager
       );
       eduNPC.setPlayer(playerSprite);
 
@@ -213,7 +235,8 @@ export class StageScene extends Phaser.Scene {
         4160,
         height - 480,
         "exp_npc",
-        npcDialogues.expGate
+        npcDialogues.expGate,
+        this.soundManager
       );
       expNPC.setPlayer(playerSprite);
 
@@ -223,7 +246,8 @@ export class StageScene extends Phaser.Scene {
         5860,
         height - 480,
         "ladder_npc",
-        npcDialogues.ladderHint
+        npcDialogues.ladderHint,
+        this.soundManager
       );
       ladderNPC.setPlayer(playerSprite);
 
@@ -233,7 +257,8 @@ export class StageScene extends Phaser.Scene {
         6180,
         height - 96,
         "project_npc",
-        npcDialogues.projGate
+        npcDialogues.projGate,
+        this.soundManager
       );
       projNPC.setPlayer(playerSprite);
 
@@ -243,7 +268,8 @@ export class StageScene extends Phaser.Scene {
         7620,
         height - 96,
         "contact_npc",
-        npcDialogues.contactGate
+        npcDialogues.contactGate,
+        this.soundManager
       );
       contactNPC.setPlayer(playerSprite);
       const contactBricks = [
@@ -266,6 +292,10 @@ export class StageScene extends Phaser.Scene {
           label: "linkedin",
         },
       ];
+
+      // const endZone = new EndZone(this, 9000, height - 96, this.soundManager);
+      // endZone.setupOverlap(playerSprite);
+
 
       contactBricks.forEach(({ x, y, url, label }) => {
         const brick = new SpecialLinkBrick(this, x, y, url, label);
@@ -310,9 +340,18 @@ export class StageScene extends Phaser.Scene {
         }
       );
 
-      // Set up camera to follow player
-      this.cameras.main.startFollow(playerSprite, true, 1, 1);
+      // Set up camera to follow player horizontally only
+      this.cameras.main.startFollow(playerSprite, true, 0.08, 0.01);
       this.cameras.main.roundPixels = true;
+
+      // Set a large deadzone for vertical movement to prevent camera bounce
+      this.cameras.main.setDeadzone(200, height);
+
+      // Ensure camera stays within world bounds
+      this.cameras.main.setBounds(0, 0, this.LEVEL_WIDTH, height);
+
+      // Set camera zoom to 1 (no zoom)
+      this.cameras.main.setZoom(1);
 
       // Set up collisions
       this.physics.add.collider(playerSprite, this.ground);

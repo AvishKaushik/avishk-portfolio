@@ -3,9 +3,11 @@
 import * as Phaser from "phaser";
 // import { sections } from "../sections";
 import { preloadCharacterSheets } from "../components/characters";
+import { SoundManager } from "../components/SoundManager";
 
 export class PreloadScene extends Phaser.Scene {
   private loadedTextures: Set<string> = new Set();
+  private soundManager: SoundManager | undefined;
 
   constructor() {
     super("Preload");
@@ -35,17 +37,20 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   preload() {
-    preloadCharacterSheets(this); 
+    preloadCharacterSheets(this);
     const { width, height } = this.scale;
     // Create loading bar
-    this.add.tileSprite(0, 0, width, height, "bg_sky")
-    .setOrigin(0)
-    .setScrollFactor(0);
+    this.add
+      .tileSprite(0, 0, width, height, "bg_sky")
+      .setOrigin(0)
+      .setScrollFactor(0);
     const progressBar = this.add.graphics();
     const progressBox = this.add.graphics();
     progressBox.fillStyle(0x000000, 0.5);
     progressBox.fillRect(240, 270, 320, 50);
 
+    this.soundManager = new SoundManager(this);
+    this.soundManager.preloadSounds();
 
     const loadingText = this.make.text({
       x: width / 2,
@@ -140,35 +145,39 @@ export class PreloadScene extends Phaser.Scene {
       { key: "sdg3", path: "/projects/sdg3.png" },
       { key: "portfolio", path: "/projects/portfolio.png" },
     ];
-    this.load.spritesheet('intro_npc', '/game/assets/npc/intro_npc.png', {
+    this.load.spritesheet("intro_npc", "/game/assets/npc/intro_npc.png", {
       frameWidth: 128,
       frameHeight: 128,
     });
-    this.load.spritesheet('about_npc', '/game/assets/npc/about_npc.png', {
+    this.load.spritesheet("about_npc", "/game/assets/npc/about_npc.png", {
       frameWidth: 128,
       frameHeight: 128,
     });
-    this.load.spritesheet('education_npc', '/game/assets/npc/education_npc.png', {
+    this.load.spritesheet(
+      "education_npc",
+      "/game/assets/npc/education_npc.png",
+      {
+        frameWidth: 128,
+        frameHeight: 128,
+      }
+    );
+    this.load.spritesheet("exp_npc", "/game/assets/npc/exp_npc.png", {
       frameWidth: 128,
       frameHeight: 128,
     });
-    this.load.spritesheet('exp_npc', '/game/assets/npc/exp_npc.png', {
+    this.load.spritesheet("ladder_npc", "/game/assets/npc/ladder_npc.png", {
       frameWidth: 128,
       frameHeight: 128,
     });
-    this.load.spritesheet('ladder_npc', '/game/assets/npc/ladder_npc.png', {
+    this.load.spritesheet("project_npc", "/game/assets/npc/project_npc.png", {
       frameWidth: 128,
       frameHeight: 128,
     });
-    this.load.spritesheet('project_npc', '/game/assets/npc/project_npc.png', {
+    this.load.spritesheet("contact_npc", "/game/assets/npc/contact_npc.png", {
       frameWidth: 128,
       frameHeight: 128,
     });
-    this.load.spritesheet('contact_npc', '/game/assets/npc/contact_npc.png', {
-      frameWidth: 128,
-      frameHeight: 128,
-    });
-    this.load.image('scanlines', '/game/assets/scanlines.png');
+    this.load.image("scanlines", "/game/assets/scanlines.png");
 
     essentialAssets.forEach((asset) => {
       this.loadTextureSafely(asset.key, asset.path, "image");
@@ -180,11 +189,10 @@ export class PreloadScene extends Phaser.Scene {
       frameHeight: 32,
     });
 
-    this.load.spritesheet('chest', '/game/assets/chest.png', {
+    this.load.spritesheet("chest", "/game/assets/chest.png", {
       frameWidth: 64,
       frameHeight: 64,
     });
-
 
     // Create fallback player texture if main one fails
     this.load.on("loaderror", (file: { key: string }) => {
@@ -211,13 +219,19 @@ export class PreloadScene extends Phaser.Scene {
     optionalAssets.forEach((asset) => {
       this.loadTextureSafely(asset.key, asset.path, "image");
     });
-
   }
 
   create() {
     // Add a small delay to show loading completion
+    this.soundManager?.createSounds();
+
+    this.soundManager?.stopAllMusic();
+    // Example: start intro music in your landing scene
+    this.soundManager?.playMusic("intro-music");
+
     this.time.delayedCall(500, () => {
-      this.scene.start("Stage");
+      this.soundManager?.stopAllMusic();
+      this.scene.start("Stage", { soundManager: this.soundManager });
     });
   }
 }
