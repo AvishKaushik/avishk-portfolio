@@ -487,7 +487,7 @@ export default function AchievementsSection() {
         />
       ))}
 
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10 mx-auto w-full">
         {/* Heading */}
         <div className="text-center mb-16">
           <h2 className="achievements-heading text-4xl md:text-6xl font-bold mb-6">
@@ -547,7 +547,8 @@ export default function AchievementsSection() {
               <TrophyCarousel items={trophies} />
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-8 justify-items-center">
+
               {certifications.map((cert) => (
                 <CertificationPin key={cert.id} cert={cert} />
               ))}

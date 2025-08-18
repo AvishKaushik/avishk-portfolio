@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   IconFileCv,
@@ -10,12 +11,25 @@ import { motion } from "framer-motion";
 
 const GameNavbar = () => {
   const router = useRouter();
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
 
   const handleMuteToggle = () => {
-    setIsMuted(!isMuted);
-    // Add sound toggle logic here when audio is implemented
+    setIsMuted((prev) => {
+      const newMute = !prev;
+      if (typeof window !== "undefined" && (window as any).gameAudio) {
+        (window as any).gameAudio.setMute(newMute);
+      }
+      return newMute;
+    });
   };
+  
+  useEffect(() => {
+    // Sync React state with Phaser on mount
+    if (typeof window !== "undefined" && (window as any).gameAudio) {
+      setIsMuted((window as any).gameAudio.isMuted());
+    }
+  }, []);
+  
 
   return (
     <motion.nav

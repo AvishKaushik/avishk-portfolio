@@ -6,6 +6,7 @@ export class SoundManager {
   private sounds: Map<string, Phaser.Sound.BaseSound> = new Map();
   private musicVolume: number = 0.3;
   private sfxVolume: number = 0.5;
+  private muted: boolean = false; // <-- new
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
@@ -24,40 +25,27 @@ export class SoundManager {
   }
 
   createSounds() {
-    // Create music tracks
-    this.sounds.set('intro-music', this.scene.sound.add('intro-music', { 
-      volume: this.musicVolume, 
-      loop: true 
-    }));
-    
-    this.sounds.set('game-music', this.scene.sound.add('game-music', { 
-      volume: this.musicVolume, 
-      loop: true 
-    }));
-    
-    this.sounds.set('victory-music', this.scene.sound.add('victory-music', { 
-      volume: this.musicVolume, 
-      loop: false 
-    }));
+    // Music
+    ['intro-music', 'game-music', 'victory-music'].forEach((key) => {
+      this.sounds.set(key, this.scene.sound.add(key, {
+        volume: this.musicVolume,
+        loop: key !== 'victory-music'
+      }));
+    });
 
-    // Create sound effects
-    this.sounds.set('jump-sfx', this.scene.sound.add('jump-sfx', { 
-      volume: this.sfxVolume 
-    }));
-    
-    this.sounds.set('attack-sfx', this.scene.sound.add('attack-sfx', { 
-      volume: this.sfxVolume 
-    }));
-    
-    this.sounds.set('npc-interact-sfx', this.scene.sound.add('npc-interact-sfx', { 
-      volume: this.sfxVolume 
-    }));
+    // SFX
+    ['jump-sfx', 'attack-sfx', 'npc-interact-sfx'].forEach((key) => {
+      this.sounds.set(key, this.scene.sound.add(key, { volume: this.sfxVolume }));
+    });
+
+    // Apply mute if already muted
+    this.applyMute();
   }
 
+  /** --- MUSIC & SFX CONTROL --- */
   playMusic(key: string, fadeIn: boolean = true) {
-    // Stop current music
+    if (this.muted) return; // skip if muted
     this.stopAllMusic();
-    
     const music = this.sounds.get(key);
     if (music) {
       if (fadeIn) {
@@ -75,6 +63,7 @@ export class SoundManager {
   }
 
   playSFX(key: string) {
+    if (this.muted) return;
     const sfx = this.sounds.get(key);
     if (sfx && !sfx.isPlaying) {
       sfx.play();
@@ -83,41 +72,44 @@ export class SoundManager {
 
   stopAllMusic() {
     this.sounds.forEach((sound, key) => {
-      if (key.includes('music') && sound.isPlaying) {
-        sound.stop();
-      }
+      if (key.includes('music') && sound.isPlaying) sound.stop();
     });
   }
 
-  fadeOutMusic(duration: number = 1000) {
-    this.sounds.forEach((sound, key) => {
-      if (key.includes('music') && sound.isPlaying) {
-        this.scene.tweens.add({
-          targets: sound,
-          volume: 0,
-          duration: duration,
-          ease: 'Power2',
-          onComplete: () => sound.stop()
-        });
-      }
+  /** --- MUTE / UNMUTE --- */
+  setMute(value: boolean) {
+    this.muted = value;
+    this.applyMute();
+  }
+
+  toggleMute() {
+    this.muted = !this.muted;
+    this.applyMute();
+    return this.muted;
+  }
+
+  isMuted() {
+    return this.muted;
+  }
+
+  private applyMute() {
+    this.sounds.forEach((sound) => {
+      (sound as Phaser.Sound.WebAudioSound).setMute(this.muted);
     });
   }
 
+  /** --- VOLUME CONTROL --- */
   setMusicVolume(volume: number) {
     this.musicVolume = volume;
     this.sounds.forEach((sound, key) => {
-      if (key.includes('music')) {
-        (sound as Phaser.Sound.WebAudioSound).setVolume(volume);
-      }
+      if (key.includes('music')) (sound as Phaser.Sound.WebAudioSound).setVolume(volume);
     });
   }
 
   setSFXVolume(volume: number) {
     this.sfxVolume = volume;
     this.sounds.forEach((sound, key) => {
-      if (key.includes('sfx')) {
-        (sound as Phaser.Sound.WebAudioSound).setVolume(volume);
-      }
+      if (key.includes('sfx')) (sound as Phaser.Sound.WebAudioSound).setVolume(volume);
     });
   }
 }

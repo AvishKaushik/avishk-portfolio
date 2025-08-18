@@ -114,7 +114,12 @@ export default function LandingSection() {
           </MagneticButton>
           
           <MagneticButton
-            href="#projects"
+            onClick={() => {
+              const projectsSection = document.getElementById("projects");
+              if (projectsSection) {
+                projectsSection.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
             className="group inline-flex items-center justify-center gap-2 rounded-lg border border-muted-foreground px-6 py-3 text-sm font-medium text-muted-foreground hover:bg-muted/20 hover:border-primary/50 transition-all duration-300 hover:scale-105"
           >
             <span>View Projects</span>

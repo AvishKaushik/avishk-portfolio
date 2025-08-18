@@ -1,8 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 
 interface RevealTextProps {
   children: string;
@@ -11,29 +9,22 @@ interface RevealTextProps {
   duration?: number;
 }
 
-export const RevealText = ({ 
-  children, 
-  className = "", 
+export const RevealText = ({
+  children,
+  className = "",
   delay = 0,
-  duration = 0.8 
+  duration = 0.8,
 }: RevealTextProps) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-10%" });
-
   const words = children.split(" ");
 
   return (
-    <div ref={ref} className={className}>
+    <div className={`flex flex-wrap justify-center ${className}`}>
       {words.map((word, i) => (
         <motion.span
           key={i}
           className="inline-block mr-2"
-          initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-          animate={isInView ? { 
-            opacity: 1, 
-            y: 0, 
-            filter: "blur(0px)" 
-          } : {}}
+          initial={{ opacity: 0, y: 20, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{
             duration,
             delay: delay + i * 0.1,

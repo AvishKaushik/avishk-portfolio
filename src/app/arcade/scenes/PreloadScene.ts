@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+
 "use client";
 
 import * as Phaser from "phaser";
@@ -222,13 +225,25 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   create() {
-    // Add a small delay to show loading completion
     this.soundManager?.createSounds();
-
+  
+    // Expose a global helper so React can access it
+    (window as any).gameAudio = {
+      toggleMute: () => {
+        if (!this.soundManager) return false;
+        const newMute = !this.soundManager.isMuted();
+        this.soundManager.setMute(newMute);
+        return newMute;
+      },
+      setMute: (mute: boolean) => {
+        this.soundManager?.setMute(mute);
+      },
+      isMuted: () => this.soundManager?.isMuted() ?? true,
+    };
+  
     this.soundManager?.stopAllMusic();
-    // Example: start intro music in your landing scene
     this.soundManager?.playMusic("intro-music");
-
+  
     this.time.delayedCall(500, () => {
       this.soundManager?.stopAllMusic();
       this.scene.start("Stage", { soundManager: this.soundManager });

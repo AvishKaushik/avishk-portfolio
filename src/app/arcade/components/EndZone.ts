@@ -115,7 +115,6 @@ export class EndZone extends Phaser.GameObjects.Container {
 
     // Stop game music and play victory music
     if (this.soundManager) {
-      this.soundManager.fadeOutMusic(1000);
       this.scene.time.delayedCall(1000, () => {
         this.soundManager?.playMusic('victory-music', false);
       });
