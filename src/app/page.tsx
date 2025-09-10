@@ -1,18 +1,23 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-// import SplashScreen from "./SplashScreen";
+import { useSplash } from "@/contexts/SplashContext";
+import SplashScreen from "./SplashScreen";
+import SplashGuard from "@/components/SplashGuard";
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
 
 export default function Home() {
   const router = useRouter();
+  const { markSplashAsSeen } = useSplash();
 
-  useEffect(() => {
-    router.replace("/professional");
-  }, [router]);
+  const handleSplashComplete = () => {
+    markSplashAsSeen();
+    router.push("/professional");
+  };
 
   return (
-    <>
-      {/* <SplashScreen /> */}
-    </>
+    <SplashGuard allowedWithoutSplash={true}>
+      <SmoothCursor />
+      <SplashScreen onComplete={handleSplashComplete} />
+    </SplashGuard>
   );
 }

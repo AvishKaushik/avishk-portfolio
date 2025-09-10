@@ -14,6 +14,7 @@ interface Milestone {
   date: string;
   type: "education" | "work" | "achievement";
   icon: React.ReactNode;
+  height?: number;
 }
 
 const milestones: Milestone[] = [
@@ -23,6 +24,7 @@ const milestones: Milestone[] = [
     date: "Aug 2024",
     type: "education",
     icon: <School className="w-4 h-4" />,
+    height: 15,
   },
   {
     title: "Software Engineer @ Societe Generale",
@@ -30,6 +32,7 @@ const milestones: Milestone[] = [
     date: "Jan 2022 – Jul 2024",
     type: "work",
     icon: <Briefcase className="w-4 h-4" />,
+    height: 0,
   },
   {
     title: "Software Engineer Intern @ Kogniti",
@@ -37,6 +40,7 @@ const milestones: Milestone[] = [
     date: "Oct 2021 – Jan 2022",
     type: "work",
     icon: <Briefcase className="w-4 h-4" />,
+    height: 0,
   },
   {
     title: "B. Tech @ VIT Bhopal",
@@ -44,6 +48,7 @@ const milestones: Milestone[] = [
     date: "Aug 2018 – Jul 2022",
     type: "education",
     icon: <GraduationCap className="w-4 h-4" />,
+    height: 15,
   },
   {
     title: "St. Theresa School",
@@ -51,6 +56,7 @@ const milestones: Milestone[] = [
     date: "May 2018",
     type: "education",
     icon: <School className="w-4 h-4" />,
+    height: 15,
   },
 ];
 
@@ -125,12 +131,13 @@ export default function TimelineSection() {
       <div
         ref={trackRef}
         className="hidden md:block relative mx-auto w-full max-w-6xl mt-56"
-        style={{ height: rows * ROW_H }}
+        style={{ height: rows * ROW_H, position: 'relative' }}
       >
         <svg
           viewBox={`0 0 100 ${rows * (ROW_H / 10)}`}
           preserveAspectRatio="none"
           className="absolute inset-0 w-full h-full pointer-events-none"
+          aria-hidden="true"
         >
           <motion.path
             d={buildPath(rows)}
@@ -147,7 +154,7 @@ export default function TimelineSection() {
           const isFirstInRow = row % 2 == 0 ? idx % 2 === 0 : idx % 2 == 1;
           const dotLeft = isFirstInRow ? "30%" : "70%";
           const cardLeft = isFirstInRow
-            ? "calc(30% - 210px)"
+            ? "calc(30% - 200px)"
             : "calc(70% - 140px)";
 
           return (
@@ -174,11 +181,11 @@ export default function TimelineSection() {
               />
 
               <div
-                className="glass max-w-xs p-4 rounded-xl"
+                className="glass-enhanced max-w-xs p-4 rounded-xl"
                 style={{
                   position: "absolute",
                   left: cardLeft,
-                  top: "-110px",
+                  top: `${-120 + (m.height || 0)}px`,
                 }}
               >
                 <div className="flex items-center gap-2 font-semibold text-sm mb-1">
@@ -210,11 +217,11 @@ export default function TimelineSection() {
               className="relative"
             >
               <span
-                className={`absolute -left-[11px] top-1 w-5 h-5 rounded-full border-4 border-background ${
+                className={`absolute -left-[33px] top-10 w-5 h-5 rounded-full border-4 border-background ${
                   DOT[m.type]
                 }`}
               />
-              <div className="glass p-5 rounded-xl">
+              <div className="glass-enhanced p-5 rounded-xl">
                 <div className="flex items-center gap-2 font-semibold text-sm mb-1">
                   {m.icon}
                   {m.title}

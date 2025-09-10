@@ -1,157 +1,114 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
+import { motion, AnimatePresence } from "framer-motion";
+import { Particles } from "@/components/magicui/particles";
+import gsap from "gsap";
 
-export default function SplashScreen() {
+interface SplashScreenProps {
+  onComplete?: () => void;
+}
+
+export default function SplashScreen({ onComplete }: SplashScreenProps) {
   const router = useRouter();
-  const [transitioning, setTransitioning] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const [color, setColor] = useState("#ffffff");
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setTransitioning(true); // Start animation
-      setTimeout(() => router.push("/professional"), 1000); // Route after animation
-    }, 2000); // Wait 5s before animating
+    setColor(resolvedTheme === "dark" ? "#ffffff" : "#000000");
+  }, [resolvedTheme]);
 
-    return () => clearTimeout(timer);
-  }, [router]);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsTransitioning(true);
+      gsap.to(containerRef.current, {
+        opacity: 0,
+        scale: 0.95,
+        duration: 1,
+        ease: "power2.inOut",
+        onComplete: () => {
+          if (onComplete) {
+            onComplete();
+          } else {
+            router.push("/professional");
+          }
+        },
+      });
+    }, 4200); // Wait for signature animation to complete
+
+    return () => clearTimeout(timeout);
+  }, [router, onComplete]);
 
   return (
-    <div className={`splash-container ${transitioning ? "transitioning" : ""}`}>
-      <div className={`splash-section gaming ${transitioning ? "hide" : ""}`}>
-        <h1 className="ascii-text">🎮 Avish Kaushik</h1>
-        {/* <p className="ascii-sub">Arcade Mode - Explore my skills through an interactive game.</p> */}
-      </div>
-
-      <div
-        className={`splash-section professional ${
-          transitioning ? "expand" : ""
-        }`}
+    <AnimatePresence mode="wait">
+      <motion.div
+        ref={containerRef}
+        className="fixed inset-0 z-50 overflow-hidden bg-background"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
       >
-        <h1 className="pro-text">Avish Kaushik</h1>
-        {/* <p className="pro-sub">For recruiters and hiring managers — clean & impactful.</p> */}
-      </div>
+        {/* Particles Effect */}
+        <Particles
+          className="absolute inset-0 z-0"
+          quantity={1200}
+          ease={500}
+          staticity={40}
+          color={color}
+          refresh
+        />
+        
+        <div className="relative flex h-screen w-full flex-col items-center justify-center z-10 text-center px-6">
+          <div className="signature-typing-container w-full h-full">
+            <h1 className="signature-animation text-6xl md:text-8xl lg:text-9xl xl:text-[12rem] font-normal tracking-wide leading-none h-full content-center">
+              Avish Kaushik
+            </h1>
+          </div>
+        </div>
 
-      <div className={`splash-section cli ${transitioning ? "hide" : ""}`}>
-        {/* <pre className="cli-text"></pre> */}
-        <pre className="cli-sub">Avish Kaushik_</pre>
-      </div>
+        {/* Skip Button */}
+        {/* <motion.button
+          className="absolute top-6 right-6 z-30 px-4 py-2 text-sm font-medium rounded-lg bg-muted/20 text-muted-foreground hover:bg-muted/30 transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center"
+          onClick={() => {
+            setIsTransitioning(true);
+            gsap.to(containerRef.current, {
+              opacity: 0,
+              scale: 1.05,
+              duration: 0.5,
+              ease: "power2.inOut",
+              onComplete: () => {
+                if (onComplete) {
+                  onComplete();
+                } else {
+                  router.push("/professional");
+                }
+              },
+            });
+          }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="Skip splash screen animation"
+        >
+          Skip
+        </motion.button> */}
 
-      <style jsx>{`
-        .splash-container {
-          height: 100vh;
-          display: flex;
-          flex-direction: column;
-          overflow: hidden;
-        }
-
-        .hide {
-          opacity: 0;
-          height: 0;
-          transition: all 0.6s ease-in-out;
-          overflow: hidden;
-        }
-
-        /* Expand the middle/professional section to full screen */
-        .expand {
-          flex: none !important;
-          height: 100vh;
-          transition: all 0.6s ease-in-out;
-          z-index: 10;
-          box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .splash-section {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.5s;
-          text-align: center;
-        }
-
-        /* Top: Gaming */
-        .gaming {
-          background: repeating-linear-gradient(
-            45deg,
-            #0f0c29,
-            #302b63,
-            #24243e
-          );
-          color: #ffeb3b;
-          font-family: "Press Start 2P", monospace;
-        }
-
-        .ascii-text {
-          font-size: 1.1rem;
-          text-shadow: 0 0 5px #f9f871;
-        }
-
-        .ascii-sub {
-          font-size: 0.8rem;
-          margin-top: 10px;
-        }
-
-        /* Middle: Professional */
-        .professional {
-          background: linear-gradient(135deg, #f0f0f0, #ffffff);
-          color: #111;
-          font-family: "Inter", sans-serif;
-        }
-
-        .pro-text {
-          font-size: 2rem;
-          font-weight: 600;
-        }
-
-        .pro-sub {
-          font-size: 1rem;
-          opacity: 0.8;
-          margin-top: 8px;
-        }
-
-        /* Bottom: CLI */
-        .cli {
-          background: radial-gradient(circle, #000000, #111111);
-          color: #39ff14;
-          font-family: "Share Tech Mono", monospace;
-        }
-
-        .cli-text {
-          font-size: 1rem;
-          margin-bottom: 8px;
-        }
-
-        .cli-sub {
-          font-size: 1.2rem;
-          animation: blink 1s step-start infinite;
-        }
-
-        @keyframes blink {
-          50% {
-            opacity: 0;
-          }
-        }
-
-        @media screen and (max-width: 768px) {
-          .ascii-text,
-          .pro-text,
-          .cli-text {
-            font-size: 1rem;
-          }
-          .ascii-sub,
-          .pro-sub,
-          .cli-sub {
-            font-size: 0.75rem;
-          }
-        }
-      `}</style>
-
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Press+Start+2P&family=Share+Tech+Mono&display=swap"
-        rel="stylesheet"
-      />
-    </div>
+        {/* Overlay for smooth transition */}
+        {isTransitioning && (
+          <motion.div
+            className="absolute inset-0 bg-background z-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          />
+        )}
+      </motion.div>
+    </AnimatePresence>
   );
 }

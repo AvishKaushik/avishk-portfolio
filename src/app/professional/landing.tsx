@@ -13,6 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function LandingSection() {
   const { resolvedTheme } = useTheme();
   const [color, setColor] = useState("#ffffff");
+  const [showEnhancedText, setShowEnhancedText] = useState(false);
 
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -22,50 +23,49 @@ export default function LandingSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Clean, smooth entrance animations
-      gsap.from(".landing-heading", {
-        opacity: 0,
-        y: 50,
-        scale: 0.95,
-        duration: 1.2,
-        ease: "power4.out",
-        delay: 0.2,
-      });
-
+      // Faster, simpler animations for better LCP
+      gsap.set(".landing-heading", { opacity: 1 }); // Ensure immediate visibility
+      
       gsap.from(".landing-subtext", {
         opacity: 0,
-        y: 30,
-        duration: 1,
-        delay: 0.5,
-        ease: "power3.out",
+        y: 20,
+        duration: 0.6,
+        delay: 0.1,
+        ease: "power2.out",
       });
 
       gsap.from(".landing-description", {
         opacity: 0,
-        y: 20,
-        duration: 0.8,
-        delay: 0.7,
-        ease: "power3.out",
+        y: 15,
+        duration: 0.5,
+        delay: 0.2,
+        ease: "power2.out",
       });
 
       gsap.from(".cta-buttons", {
         opacity: 0,
-        y: 30,
-        duration: 0.8,
-        delay: 0.9,
-        ease: "power3.out",
+        y: 20,
+        duration: 0.6,
+        delay: 0.3,
+        ease: "power2.out",
       });
 
       gsap.from(".scroll-indicator", {
         opacity: 0,
-        y: 20,
-        duration: 0.6,
-        delay: 1.1,
+        y: 15,
+        duration: 0.5,
+        delay: 0.4,
         ease: "power2.out",
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    // Enable enhanced text effects after animations
+    const timer = setTimeout(() => setShowEnhancedText(true), 800);
+
+    return () => {
+      ctx.revert();
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
@@ -76,7 +76,7 @@ export default function LandingSection() {
     >
       <Particles
         className="absolute inset-0 z-0"
-        quantity={1200}
+        quantity={600}
         ease={500}
         staticity={40}
         color={color}
@@ -87,8 +87,17 @@ export default function LandingSection() {
         <div className="space-y-4">
           <h1 className="landing-heading text-4xl font-bold tracking-tight md:text-6xl lg:text-8xl">
             Hi, I&apos;m{" "}
-            <LineShadowText shadowColor={color}>Avish</LineShadowText>{" "}
-            <LineShadowText shadowColor={color}>Kaushik</LineShadowText>
+            {showEnhancedText ? (
+              <>
+                <LineShadowText shadowColor={color}>Avish</LineShadowText>{" "}
+                <LineShadowText shadowColor={color}>Kaushik</LineShadowText>
+              </>
+            ) : (
+              <>
+                <span className="text-primary">Avish</span>{" "}
+                <span className="text-primary">Kaushik</span>
+              </>
+            )}
           </h1>
 
           <p className="landing-subtext text-xl font-semibold tracking-tight md:text-3xl lg:text-4xl text-muted-foreground">
@@ -107,7 +116,7 @@ export default function LandingSection() {
             href="/Avish_Kaushik_Resume.pdf"
             className="group inline-flex items-center justify-center gap-2 rounded-lg bg-primary text-primary-foreground px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
           >
-            <svg className="w-4 h-4 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
             <span>Download Resume</span>
@@ -123,7 +132,7 @@ export default function LandingSection() {
             className="group inline-flex items-center justify-center gap-2 rounded-lg border border-muted-foreground px-6 py-3 text-sm font-medium text-muted-foreground hover:bg-muted/20 hover:border-primary/50 transition-all duration-300 hover:scale-105"
           >
             <span>View Projects</span>
-            <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </MagneticButton>

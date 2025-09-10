@@ -241,9 +241,10 @@ export default function AboutSection() {
             target="_blank"
             rel="noopener noreferrer"
             data-cursor="pointer"
-            className="group relative p-3 rounded-full border border-border bg-background shadow-md hover:shadow-xl transition hover:-translate-y-1"
+            className="group relative p-3 rounded-full border border-border bg-background shadow-md hover:shadow-xl transition hover:-translate-y-1 min-w-[48px] min-h-[48px] flex items-center justify-center"
+            aria-label={`Visit my ${name} profile`}
           >
-            <span className="text-xl group-hover:scale-110 transition-transform">
+            <span className="text-xl group-hover:scale-110 transition-transform" aria-hidden="true">
               {icon}
             </span>
           </a>

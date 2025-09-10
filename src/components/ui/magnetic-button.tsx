@@ -11,6 +11,8 @@ interface MagneticButtonProps {
   onClick?: () => void;
   strength?: number;
   soundEnabled?: boolean;
+  "aria-label"?: string;
+  [key: string]: unknown; // Allow any additional props to be passed through
 }
 
 export const MagneticButton = ({
@@ -20,6 +22,7 @@ export const MagneticButton = ({
   onClick,
   strength = 0.3,
   soundEnabled = true,
+  ...restProps
 }: MagneticButtonProps) => {
   const ref = useRef<HTMLAnchorElement | HTMLDivElement | null>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -71,6 +74,7 @@ export const MagneticButton = ({
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       {...props}
+      {...restProps}
     >
       {children}
     </Component>

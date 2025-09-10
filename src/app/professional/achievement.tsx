@@ -12,58 +12,92 @@ import {
 } from "lucide-react";
 import { TextAnimate } from "@/components/magicui/text-animate";
 import { MagneticButton } from "@/components/ui/magnetic-button";
-import Trophy3D from "@/components/3d/Trophy3D";
-import Certificate3D from "@/components/3d/Certificate3D";
+import TrophyImage from "@/components/ui/TrophyImage";
+import { lazy, Suspense } from "react";
 import { useSound } from "@/hooks/useSound";
+
+const Certificate3D = lazy(() => import("@/components/3d/Certificate3D"));
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { Canvas } from "@react-three/fiber";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const trophies = [
   {
     id: 1,
-    title: "Reply Code Challenge 2021",
+    title: "Brainac YG Award",
     description:
-      "Achieved Global Rank 363 and India Rank 73 in this prestigious international programming competition",
-    rank: "Global Rank 363 • India Rank 73",
-    date: "2021",
-    category: "Programming Competition",
-    modelPath: "/models/trophy1.glb",
-    level: "International",
+      "Received the Brainac YG Award at Societe Generale Global Solution Centre.",
+    rank: "Award",
+    date: "2023",
+    category: "Corporate Award",
+    imagePath: "/trophy/brainiac3d.png",
+    level: "Organization",
   },
   {
     id: 2,
-    title: "Google HashCode 2021",
+    title: "BL Special Award",
     description:
-      "Participated in Google's team programming competition, solving real-world engineering problems",
-    rank: "International Rank 2282 • India Rank 495",
-    date: "2021",
-    category: "Team Programming",
-    modelPath: "/models/trophy2.glb",
-    level: "International",
+      "Received the BL Special Award at Societe Generale Global Solution Centre.",
+    rank: "Award",
+    date: "2023",
+    category: "Corporate Award",
+    imagePath: "/trophy/blspecial3d.png",
+    level: "Organization",
   },
   {
     id: 3,
-    title: "DeCipher IEM 2019",
+    title: "Spot Award",
     description:
-      "Secured International Rank 39 in this competitive programming and problem-solving contest",
-    rank: "International Rank 39",
-    date: "2019",
-    category: "Problem Solving",
-    modelPath: "/models/trophy3.glb",
-    level: "International",
+      "Received the Spot Award at Societe Generale Global Solution Centre.",
+    rank: "Award",
+    date: "2022",
+    category: "Corporate Award",
+    imagePath: "/trophy/spot3d.png",
+    level: "Organization",
   },
   {
     id: 4,
+    title: "Reply Code Challenge 2021",
+    description:
+      "Achieved Global Rank 363 and National Rank 73 in this international programming competition.",
+    rank: "Global Rank 363 • National Rank 73",
+    date: "2021",
+    category: "Programming Competition",
+    imagePath: "/trophy/reply3d.png",
+    level: "International",
+  },
+  {
+    id: 5,
+    title: "HashCode 2021",
+    description:
+      "Achieved International Rank 2282 and National Rank 495 in this coding competition organized by Google.",
+    rank: "International Rank 2282 • National Rank 495",
+    date: "2021",
+    category: "Programming Competition",
+    imagePath: "/trophy/google3d.png",
+    level: "International",
+  },
+  {
+    id: 6,
+    title: "DeCipher 2019",
+    description:
+      "Achieved International Rank 39 in the DeCipher contest organized at IEM Kolkata.",
+    rank: "International Rank 39",
+    date: "2019",
+    category: "Programming Competition",
+    imagePath: "/trophy/decipher3d.png",
+    level: "International",
+  },
+  {
+    id: 7,
     title: "Quicky Sudoku Quiz 2016",
     description:
-      "Achieved National Rank 1 in Sudoku competition organized by Aakash Institute",
+      "Achieved National Rank 1 in the Quicky Sudoku Quiz held at Akash Institute.",
     rank: "National Rank 1",
     date: "2016",
-    category: "Logic & Reasoning",
-    modelPath: "/models/trophy4.glb",
+    category: "Quiz Competition",
+    imagePath: "/trophy/sudoku3d.png",
     level: "National",
   },
 ];
@@ -81,29 +115,36 @@ const certifications = [
     validUntil: "Lifetime",
     skills: ["Java", "OOP", "Control Structures", "Basic Algorithms"],
     verificationUrl: "https://www.hackerrank.com/certificates/1d1d281ade56",
-    imagePath: "/certificates/java-basic-hackerrank.svg",
+    imagePath: "/certificates/java_basic.png",
   },
   {
     id: 2,
-    title: "Data Structures",
+    title: "Data Structures Course",
     description:
       "Course on fundamental data structures including arrays, linked lists, stacks, queues, hash tables, and trees with practical problem-solving techniques.",
-    issuer: "University of California San Diego (Coursera)",
+    issuer: "UC San Diego (Coursera)",
     date: "Aug 2020",
     category: "Computer Science",
     credentialId: "BWHNVH2TBDZB",
     validUntil: "Lifetime",
-    skills: ["Arrays", "Linked Lists", "Stacks", "Queues", "Trees", "Hash Tables"],
+    skills: [
+      "Arrays",
+      "Linked Lists",
+      "Stacks",
+      "Queues",
+      "Trees",
+      "Hash Tables",
+    ],
     verificationUrl:
       "https://www.coursera.org/account/accomplishments/verify/BWHNVH2TBDZB",
-    imagePath: "/certificates/data-structures-ucsd.svg",
+    imagePath: "/certificates/data_structures.jpeg",
   },
   {
     id: 3,
-    title: "Algorithmic Toolbox",
+    title: "Algorithmic Toolbox Course",
     description:
       "Introductory algorithms course covering greedy algorithms, divide and conquer, dynamic programming, and efficient problem solving strategies.",
-    issuer: "University of California San Diego (Coursera)",
+    issuer: "UC San Diego (Coursera)",
     date: "Jul 2020",
     category: "Algorithms",
     credentialId: "SQK74BTE79TQ",
@@ -111,7 +152,7 @@ const certifications = [
     skills: ["Greedy Algorithms", "Divide & Conquer", "Dynamic Programming"],
     verificationUrl:
       "https://www.coursera.org/account/accomplishments/verify/SQK74BTE79TQ",
-    imagePath: "/certificates/algorithmic-toolbox-ucsd.svg",
+    imagePath: "/certificates/algo_toolbox.jpeg",
   },
   {
     id: 4,
@@ -125,11 +166,11 @@ const certifications = [
     validUntil: "Lifetime",
     skills: ["Big Data", "Data Analytics", "Data Processing"],
     verificationUrl: "https://futureskillsprime.in", // generic, replace if you have official
-    imagePath: "/certificates/big-data-foundation-nasscom.svg",
+    imagePath: "/certificates/nasscom.webp",
   },
   {
     id: 5,
-    title: "HTML, CSS, and JavaScript for Web Developers",
+    title: "Web Development Specialization",
     description:
       "Web development specialization focusing on front-end foundations including HTML5, CSS3, JavaScript, and responsive design practices.",
     issuer: "Johns Hopkins University (Coursera)",
@@ -140,7 +181,7 @@ const certifications = [
     skills: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
     verificationUrl:
       "https://www.coursera.org/account/accomplishments/verify/HK3SW4RYP7MJ",
-    imagePath: "/certificates/html-css-js-jhu.svg",
+    imagePath: "/certificates/web_dev.jpeg",
   },
   {
     id: 6,
@@ -154,7 +195,7 @@ const certifications = [
     validUntil: "Lifetime",
     skills: ["Basic Algorithms", "Logic", "Programming Fundamentals"],
     verificationUrl: "https://www.hackerrank.com/certificates/b84f36eb3d9e",
-    imagePath: "/certificates/problem-solving-basic-hackerrank.svg",
+    imagePath: "/certificates/problem_solving.png",
   },
   {
     id: 7,
@@ -168,7 +209,7 @@ const certifications = [
     validUntil: "Lifetime",
     skills: ["Python", "Data Structures", "Loops", "Functions"],
     verificationUrl: "https://www.hackerrank.com/certificates/bff79b885fe1",
-    imagePath: "/certificates/python-basic-hackerrank.svg",
+    imagePath: "/certificates/python_basic.png",
   },
   {
     id: 8,
@@ -182,7 +223,7 @@ const certifications = [
     validUntil: "Lifetime",
     skills: ["Algorithms", "Complexity Analysis", "Problem Solving"],
     verificationUrl: "https://www.hackerrank.com/certificates/b4fca97a80d7",
-    imagePath: "/certificates/problem-solving-intermediate-hackerrank.svg",
+    imagePath: "/certificates/pob_solving_intermediate.png",
   },
   {
     id: 9,
@@ -196,7 +237,7 @@ const certifications = [
     validUntil: "Lifetime",
     skills: ["REST API", "HTTP", "JSON", "Backend Development"],
     verificationUrl: "https://www.hackerrank.com/certificates/401014b69331",
-    imagePath: "/certificates/rest-api-intermediate-hackerrank.svg",
+    imagePath: "/certificates/rest_api_intermediate.png",
   },
   {
     id: 10,
@@ -209,11 +250,10 @@ const certifications = [
     credentialId: "ORACLE-JAVA-FUND-2020",
     validUntil: "Lifetime",
     skills: ["Java", "OOP", "Exception Handling", "Java APIs"],
-    verificationUrl: "https://education.oracle.com", // generic, replace if you have actual
-    imagePath: "/certificates/oracle-java-fundamentals.svg",
+    verificationUrl: "https://education.oracle.com",
+    imagePath: "/certificates/oracle.webp",
   },
 ];
-
 
 function TrophyCarousel({ items }: { items: typeof trophies }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -300,39 +340,64 @@ function TrophyCarousel({ items }: { items: typeof trophies }) {
   }, [currentIndex, nextItem, prevItem]);
 
   return (
-    <div className="relative w-full flex flex-col items-center justify-center overflow-hidden">
+    <div className="relative w-full flex flex-col items-center justify-center overflow-hidden right-2">
       <div className="absolute flex justify-between w-full px-4 md:px-8 lg:px-16 mb-10 z-20">
         <MagneticButton
           onClick={prevItem}
           className="p-3 md:p-4 rounded-full bg-muted/20 hover:bg-muted/40 transition shadow-lg backdrop-blur-sm border border-border/50 touch-manipulation"
+          aria-label="Previous trophy"
         >
           <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
         </MagneticButton>
         <MagneticButton
           onClick={nextItem}
           className="p-3 md:p-4 rounded-full bg-muted/20 hover:bg-muted/40 transition shadow-lg backdrop-blur-sm border border-border/50 touch-manipulation"
+          aria-label="Next trophy"
         >
           <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
         </MagneticButton>
       </div>
 
       <div className="relative flex items-center justify-center w-full h-[800px] md:h-[800px] sm:h-[800px]">
-        {/* Carousel indicators */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-          {items.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => {
-                playClick();
-                setCurrentIndex(idx);
-              }}
-              className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 touch-manipulation ${
-                idx === currentIndex
-                  ? "bg-primary w-6 md:w-8"
-                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-              }`}
-            />
-          ))}
+        {/* Minimal Carousel indicators */}
+        <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 z-20">
+          <div className="flex items-center gap-1.5 bg-background/70 backdrop-blur-sm border border-border/20 rounded-full px-3 py-2 shadow-sm">
+            {items.map((_, idx) => (
+              <motion.button
+                key={idx}
+                onClick={() => {
+                  playClick();
+                  setCurrentIndex(idx);
+                }}
+                className="group relative flex items-center justify-center transition-all duration-300 hover:scale-125"
+                whileHover={{ scale: 1.25 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label={`Go to trophy ${idx + 1}`}
+                style={{
+                  width: "44px",
+                  height: "44px",
+                  padding: "1px",
+                }}
+              >
+                {/* Simple dot */}
+                <motion.div
+                  className={`rounded-full transition-all duration-300 ${
+                    idx === currentIndex
+                      ? "w-4 h-4 bg-primary"
+                      : "w-4 h-4 bg-muted-foreground/30 group-hover:bg-primary/70"
+                  }`}
+                  animate={{
+                    scale: idx === currentIndex ? [1, 1.15, 1] : 1,
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: idx === currentIndex ? Infinity : 0,
+                    repeatType: "reverse",
+                  }}
+                />
+              </motion.button>
+            ))}
+          </div>
         </div>
 
         <AnimatePresence initial={false} mode="popLayout">
@@ -363,16 +428,11 @@ function TrophyCarousel({ items }: { items: typeof trophies }) {
               >
                 <div className="w-full h-full flex items-center justify-center">
                   <div className="w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[350px]">
-                    <Canvas
-                      camera={{ position: [1, 1, 1] }}
-                      style={{ width: "100%", height: "100%" }}
-                      gl={{ antialias: true, alpha: true }}
-                      dpr={[1, 2]}
-                    >
-                      <ambientLight intensity={2} />
-                      <directionalLight intensity={3} position={[2, 2, 5]} />
-                      <Trophy3D modelPath={item.modelPath} />
-                    </Canvas>
+                    <TrophyImage
+                      imagePath={item.imagePath}
+                      title={item.title}
+                      className="w-full h-full"
+                    />
                   </div>
                 </div>
                 {isCenter && (
@@ -465,24 +525,26 @@ export default function AchievementsSection() {
         style={{ animationDelay: "2s" }}
       />
 
-      {/* Floating particles */}
+      {/* Optimized floating particles */}
       {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-2 h-2 bg-primary/20 rounded-full"
+          className="absolute w-2 h-2 bg-primary/20 rounded-full will-change-transform"
           animate={{
-            x: [0, 100, 0],
-            y: [0, -100, 0],
+            translateX: [0, 100, 0],
+            translateY: [0, -100, 0],
             opacity: [0.2, 0.8, 0.2],
           }}
           transition={{
             duration: 8 + i * 2,
             repeat: Infinity,
             delay: i * 1.5,
+            ease: "linear",
           }}
           style={{
             left: `${20 + i * 15}%`,
             top: `${30 + i * 10}%`,
+            transform: "translateZ(0)", // Force GPU layer
           }}
         />
       ))}
@@ -547,11 +609,16 @@ export default function AchievementsSection() {
               <TrophyCarousel items={trophies} />
             </div>
           ) : (
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-8 justify-items-center">
-
-              {certifications.map((cert) => (
-                <CertificationPin key={cert.id} cert={cert} />
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-20 justify-items-center max-w-[1600px] mx-auto px-8">
+              <Suspense
+                fallback={
+                  <div className="animate-pulse bg-muted/20 rounded-2xl h-96 w-80" />
+                }
+              >
+                {certifications.map((cert) => (
+                  <CertificationPin key={cert.id} cert={cert} />
+                ))}
+              </Suspense>
             </div>
           )}
         </motion.div>
@@ -562,13 +629,14 @@ export default function AchievementsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8"
+          className="mt-20 grid grid-cols-2 md:grid-cols-5 gap-8"
         >
           {[
             { value: "4", label: "Competition Wins" },
-            { value: "3", label: "Certifications" },
+            { value: "3", label: "Recognition Awards" },
+            { value: "10", label: "Certifications" },
             { value: "39", label: "Best Global Rank" },
-            { value: "1", label: "National Rank" },
+            { value: "1", label: "Best National Rank" },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -579,12 +647,14 @@ export default function AchievementsSection() {
               className="text-center group"
             >
               <motion.div
-                className="text-3xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform duration-300"
+                className="text-4xl md:text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform duration-300"
                 whileHover={{ scale: 1.1 }}
               >
                 {stat.value}
               </motion.div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
+              <div className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                {stat.label}
+              </div>
             </motion.div>
           ))}
         </motion.div>

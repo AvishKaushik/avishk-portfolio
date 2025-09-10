@@ -56,7 +56,9 @@ body {
 
 /* Prevent zoom on mobile */
 @media (max-width: 768px) {
-  input, select, textarea {
+  input,
+  select,
+  textarea {
     font-size: 16px !important;
   }
 }
@@ -105,6 +107,12 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+/* LCP Optimization - Ensure critical text renders immediately */
+.landing-heading {
+  opacity: 1;
+  will-change: auto;
 }
 
 /* Smooth transitions for all elements */
@@ -175,7 +183,11 @@ body {
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary), var(--primary-foreground));
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary-foreground)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -187,8 +199,7 @@ body {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.1),
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
@@ -268,6 +279,26 @@ body {
     opacity: 1;
   }
 }
+
+@keyframes signIn {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.signature-animation {
+  font-family: "Agustina", sans-serif;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  border-right: 0.15em solid transparent;
+  animation: signIn 4s steps(320, end) forwards;
+}
+
+
 
 .sign {
   font-family: "Agustina", sans-serif;
@@ -507,7 +538,8 @@ body {
   }
 }
 
-::view-transition-old(root), ::view-transition-new(root) {
-    animation: none;
-    mix-blend-mode: normal;
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }

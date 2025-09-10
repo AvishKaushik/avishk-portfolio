@@ -25,8 +25,8 @@ export default function ContactSection() {
       icon: <Github className="w-5 h-5" />,
       label: "GitHub",
       href: "https://github.com/avishkaushik",
-      color: "hover:border-gray-400 hover:text-gray-300 hover:bg-gray-400/10",
-      gradient: "from-gray-600 to-gray-700",
+      color: "hover:border-stone-50 hover:text-stone-50 hover:bg-stone-950/10",
+      gradient: "from-stone-950 to-stone-950",
     },
   ];
 

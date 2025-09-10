@@ -48,21 +48,44 @@ export function QuickNav() {
       transition={{ delay: 1 }}
       className="fixed right-6 top-1/2 transform -translate-y-1/2 z-40 hidden lg:block"
     >
-      <div className="flex flex-col gap-3">
+      {/* Elegant vertical line */}
+      <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border/40 to-transparent transform -translate-x-1/2" />
+      
+      <div className="flex flex-col gap-3 relative">
         {sections.map(({ id, label }) => (
           <motion.button
             key={id}
             onClick={() => scrollToSection(id)}
-            className={`group relative w-3 h-3 rounded-full transition-all duration-300 ${
-              activeSection === id
-                ? "bg-primary scale-125"
-                : "bg-muted-foreground/30 hover:bg-muted-foreground/60"
-            }`}
-            whileHover={{ scale: 1.2 }}
+            className="group relative flex items-center justify-center transition-all duration-300 hover:scale-125"
+            whileHover={{ scale: 1.25 }}
             whileTap={{ scale: 0.9 }}
+            aria-label={`Navigate to ${label} section`}
+            style={{ 
+              width: '44px', 
+              height: '34px',
+              padding: '1px'
+            }}
           >
-            <div className="absolute right-6 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-              <div className="bg-background/90 backdrop-blur-sm border border-border rounded-lg px-3 py-1 text-xs font-medium whitespace-nowrap">
+            {/* Simple dot with smooth transitions */}
+            <motion.div
+              className={`rounded-full transition-all duration-300 ${
+                activeSection === id
+                  ? "w-4 h-4 bg-primary"
+                  : "w-3 h-3 bg-muted-foreground/30 group-hover:bg-primary/70 group-hover:w-2 group-hover:h-2"
+              }`}
+              animate={{
+                scale: activeSection === id ? [1, 1.1, 1] : 1,
+              }}
+              transition={{
+                duration: 2,
+                repeat: activeSection === id ? Infinity : 0,
+                repeatType: "reverse",
+              }}
+            />
+
+            {/* Minimal tooltip */}
+            <div className="absolute right-12 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none">
+              <div className="bg-background/90 backdrop-blur-sm border border-border/40 rounded-lg px-3 py-1.5 text-xs font-medium whitespace-nowrap shadow-md">
                 {label}
               </div>
             </div>

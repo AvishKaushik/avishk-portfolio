@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 import Head from "next/head";
+import SplashGuard from "@/components/SplashGuard";
 
 const fileSystem = {
   "about.txt": `Hi! I'm Avish Kaushik — a passionate software engineer and builder of innovative solutions.
@@ -702,7 +703,8 @@ export default function TerminalPage() {
   };
 
   return (
-    <>
+    <SplashGuard>
+      <>
       <Head>
         <link
           href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
@@ -1000,6 +1002,7 @@ export default function TerminalPage() {
           }
         }
       `}</style>
-    </>
+      </>
+    </SplashGuard>
   );
 }

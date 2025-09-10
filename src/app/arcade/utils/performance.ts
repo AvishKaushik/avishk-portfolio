@@ -25,10 +25,9 @@ export class PerformanceOptimizer {
     this.startTime = performance.now();
   }
 
-  endTimer(label: string): number {
+  endTimer(): number {
     const endTime = performance.now();
     const duration = endTime - this.startTime;
-    console.log(`${label} took ${duration.toFixed(2)}ms`);
     return duration;
   }
 

@@ -361,7 +361,6 @@ export class MobileControls {
   }
 
   private handleButtonPress(direction: string) {
-    console.log('Button pressed:', direction); // Debug log
     // Create custom keyboard events with proper properties
     const event = new KeyboardEvent('keydown', {
       key: this.getKeyForDirection(direction),
@@ -373,7 +372,6 @@ export class MobileControls {
   }
 
   private handleButtonRelease(direction: string) {
-    console.log('Button released:', direction); // Debug log
     // Create custom keyboard events with proper properties
     const event = new KeyboardEvent('keyup', {
       key: this.getKeyForDirection(direction),
@@ -385,7 +383,6 @@ export class MobileControls {
   }
 
   private handleActionPress(action: string) {
-    console.log('Action pressed:', action); // Debug log
     const event = new KeyboardEvent('keydown', {
       key: this.getKeyForAction(action),
       code: this.getKeyCodeForAction(action),
@@ -396,7 +393,6 @@ export class MobileControls {
   }
 
   private handleActionRelease(action: string) {
-    console.log('Action released:', action); // Debug log
     const event = new KeyboardEvent('keyup', {
       key: this.getKeyForAction(action),
       code: this.getKeyCodeForAction(action),

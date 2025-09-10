@@ -143,10 +143,10 @@ export class PreloadScene extends Phaser.Scene {
       { key: "linkedin", path: "/game/assets/linkedin.png" },
       { key: "github", path: "/game/assets/github.png" },
       { key: "mail", path: "/game/assets/mail.png" },
-      { key: "eduhub", path: "/projects/eduhub.png" },
-      { key: "intelliview", path: "/projects/intelliview.png" },
-      { key: "sdg3", path: "/projects/sdg3.png" },
-      { key: "portfolio", path: "/projects/portfolio.png" },
+      { key: "eduhub", path: "/projects/eduhub.webp" },
+      { key: "intelliview", path: "/projects/intelliview.webp" },
+      { key: "sdg3", path: "/projects/sdg3.webp" },
+      { key: "csa", path: "/projects/csa.webp" },
     ];
     this.load.spritesheet("intro_npc", "/game/assets/npc/intro_npc.png", {
       frameWidth: 128,

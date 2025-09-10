@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "../styles/enhanced-animations.css";
+import "../styles/splash-animations.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import '@fontsource/share-tech-mono';
-
+import { SplashProvider } from "@/contexts/SplashContext";
+import "@fontsource/share-tech-mono";
 
 export const metadata: Metadata = {
   title: "Avish Kaushik - Full Stack Developer",
@@ -19,9 +20,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link href="https://fonts.cdnfonts.com/css/agustina" rel="stylesheet" />
+        {/* Preload critical fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link href="https://fonts.cdnfonts.com/css/agustina" rel="stylesheet" />
+
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
       </head>
       <body className="bg-background text-foreground selection:bg-primary/30">
         <ThemeProvider
@@ -30,7 +40,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <SplashProvider>{children}</SplashProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -200,12 +200,14 @@ export const FloatingNav = ({
                       "shadow-[0_4px_8px_rgba(0,0,0,0.15)]",
                       "transition-all duration-300 hover:shadow-lg"
                     )}
+                    asChild
                   >
                     <a
                       href={navItem.link}
-                      className="text-black dark:text-white hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200"
+                      className="text-black dark:text-white hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200 flex items-center justify-center"
+                      aria-label={`Go to ${navItem.name} page`}
                     >
-                      <span className="block" {...iconAnimation}>
+                      <span className="block" {...iconAnimation} aria-hidden="true">
                         {navItem.icon}
                       </span>
                     </a>
@@ -229,6 +231,7 @@ export const FloatingNav = ({
                 "shadow-[0_4px_8px_rgba(0,0,0,0.15)]",
                 "transition-all duration-300 hover:shadow-lg"
               )}
+              aria-label="Toggle theme"
             >
               {/* Animated Sun */}
               <motion.div

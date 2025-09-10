@@ -111,7 +111,6 @@ export class EndZone extends Phaser.GameObjects.Container {
     if (this.hasTriggered) return;
     this.hasTriggered = true;
 
-    console.log("🎉 Victory triggered!");
 
     // Stop game music and play victory music
     if (this.soundManager) {

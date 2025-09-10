@@ -89,7 +89,7 @@ export class StageScene extends Phaser.Scene {
       // Pick a character
       const groundY = height - 200; // adjust so feet touch tiles
       // this.player = new Player(this, 200, groundY, "pixelHero");
-      this.player = new Player(this, 9000, height - 1000, "pixelHero", this.soundManager);
+      this.player = new Player(this, 200, height - 1000, "pixelHero", this.soundManager);
       const playerSprite = this.player.getSprite();
       const skills = [
         { name: "Java", score: 5 },
@@ -149,9 +149,9 @@ export class StageScene extends Phaser.Scene {
           imageKey: "sdg3",
         },
         {
-          title: "Portfolio v3",
-          url: "#",
-          imageKey: "portfolio",
+          title: "CSA Simulator",
+          url: "https://github.com/AvishKaushik/Simulator",
+          imageKey: "csa",
         },
       ]);
 

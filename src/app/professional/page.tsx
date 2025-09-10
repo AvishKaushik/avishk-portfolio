@@ -14,6 +14,7 @@ import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { QuickNav } from "@/components/ui/quick-nav";
 import ContactSection from "./contact";
 import AchievementsSection from "./achievement";
+import SplashGuard from "@/components/SplashGuard";
 
 export default function Professional() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -59,50 +60,52 @@ export default function Professional() {
   }
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key="professional"
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        className="hide-system-cursor professional-page"
-      >
-        {/* Enhanced UI Components */}
-        <ScrollProgress />
-        <SmoothCursor />
-        <FloatingNav navItems={navItems} />
-        <QuickNav />
-
-        {/* Page Sections */}
+    <SplashGuard>
+      <AnimatePresence mode="wait">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className={cn("relative h-full w-full overflow-hidden")}
+          key="professional"
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          className="hide-system-cursor professional-page"
         >
-          <LandingSection />
+          {/* Enhanced UI Components */}
+          <ScrollProgress />
+          <SmoothCursor />
+          <FloatingNav navItems={navItems} />
+          <QuickNav />
+
+          {/* Page Sections */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className={cn("relative h-full w-full overflow-hidden")}
+          >
+            <LandingSection />
+          </motion.div>
+          
+          <motion.div className="relative flex w-full flex-col overflow-hidden">
+            <AboutSection />
+          </motion.div>
+          
+          <motion.div className="relative flex w-full flex-col overflow-hidden">
+            <TimelineSection />
+          </motion.div>
+          
+          <motion.div className="relative flex w-full flex-col overflow-hidden">
+            <ProjectSection />
+          </motion.div>
+          
+          <motion.div className="relative flex w-full flex-col overflow-hidden">
+            <AchievementsSection />
+          </motion.div>
+          
+          <motion.div className="relative flex w-full flex-col overflow-hidden">
+            <ContactSection />
+          </motion.div>
         </motion.div>
-        
-        <motion.div className="relative flex w-full flex-col overflow-hidden">
-          <AboutSection />
-        </motion.div>
-        
-        <motion.div className="relative flex w-full flex-col overflow-hidden">
-          <TimelineSection />
-        </motion.div>
-        
-        <motion.div className="relative flex w-full flex-col overflow-hidden">
-          <ProjectSection />
-        </motion.div>
-        
-        <motion.div className="relative flex w-full flex-col overflow-hidden">
-          <AchievementsSection />
-        </motion.div>
-        
-        <motion.div className="relative flex w-full flex-col overflow-hidden">
-          <ContactSection />
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
+      </AnimatePresence>
+    </SplashGuard>
   );
 }
