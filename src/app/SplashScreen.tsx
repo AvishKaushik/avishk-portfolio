@@ -64,7 +64,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
         
         <div className="relative flex h-screen w-full flex-col items-center justify-center z-10 text-center px-6">
           <div className="signature-typing-container w-full h-full">
-            <h1 className="signature-animation text-6xl md:text-8xl lg:text-9xl xl:text-[12rem] font-normal tracking-wide leading-none h-full content-center">
+            <h1 className="signature-animation text-4xl md:text-8xl lg:text-9xl xl:text-[12rem] font-normal tracking-wide leading-none h-full content-center">
               Avish Kaushik
             </h1>
           </div>

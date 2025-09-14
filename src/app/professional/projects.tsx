@@ -62,6 +62,7 @@ const projects: Project[] = [
     description:
       "A website where users can submit a questionnaire to get an SDG3 score of a GitHub repo. Helps tag and discover SDG3-friendly projects, encouraging community collaboration.",
     tech: ["Python", "Flask", "ML", "JavaScript"],
+    liveUrl: "https://sdg3-classifier.vercel.app/",
     githubUrl: "https://github.com/AvishKaushik/sdg3-classifier",
     img: "/projects/sdg3.webp",
     featured: false,
@@ -142,14 +143,14 @@ function FeaturedCard({ project }: { project: Project }) {
   return (
     <motion.div
       variants={cardVariants}
-      className="group relative block rounded-3xl overflow-hidden border border-border shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] hover:shadow-[0_20px_48px_-8px_rgba(0,0,0,0.4)] transition-all duration-500 backdrop-blur-lg bg-background/50 will-change-transform"
+      className="parent flex h-full group relative block max-h-[80vh] rounded-3xl overflow-hidden border border-border shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] hover:shadow-[0_20px_48px_-8px_rgba(0,0,0,0.4)] transition-all duration-500 backdrop-blur-lg bg-background/50 will-change-transform"
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
     >
       {/* Thumbnail with parallax */}
       <div
         ref={imgRef}
-        className="relative w-full aspect-video overflow-hidden transform-gpu"
+        className="child relative w-full aspect-video overflow-hidden transform-gpu"
         style={{ position: "relative" }}
       >
         <motion.div
@@ -340,7 +341,7 @@ function ProjectCard({ project }: { project: Project }) {
         <p className="text-xs text-muted-foreground line-clamp-2 group-hover:text-muted-foreground/90">
           {project.blurb}
         </p>
-        <p className="text-[10px] text-muted-foreground/60 line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <p className="text-[10px] text-muted-foreground/60 line-clamp-2 transition-opacity duration-300">
           {project.description}
         </p>
       </div>
@@ -406,22 +407,38 @@ export default function ProjectsSection() {
 
       {/* Featured */}
       {featured.length > 0 && (
-        <motion.div
-          className="grid gap-14 z-10 relative"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-120px" }}
-          variants={containerVariants}
-        >
-          {featured.map((proj) => (
-            <FeaturedCard key={proj.id} project={proj} />
-          ))}
-        </motion.div>
+        <section>
+          <motion.div
+            className="hidden sm:grid grid gap-14 z-10 relative"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-120px" }}
+            variants={containerVariants}
+          >
+            {featured.map((proj) => (
+              <FeaturedCard key={proj.id} project={proj} />
+            ))}
+          </motion.div>
+          <motion.div
+            className="sm:hidden grid gap-8 z-10 relative "
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-120px" }}
+            variants={containerVariants}
+          >
+            {featured.map((proj) => (
+              <ProjectCard key={proj.id} project={proj} />
+            ))}
+          </motion.div>
+        </section>
       )}
 
       {/* Separator */}
       {featured.length > 0 && others.length > 0 && (
-        <div className="w-full h-px bg-border/50 my-24" />
+        <div className="w-full h-px bg-border/50 my-24 hidden sm:block" />
+      )}
+      {featured.length > 0 && others.length > 0 && (
+        <div className="w-full my-8 sm:hidden" />
       )}
 
       {/* Grid */}

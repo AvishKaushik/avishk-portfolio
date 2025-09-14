@@ -67,7 +67,7 @@ export default function Professional() {
           initial="initial"
           animate="animate"
           exit="exit"
-          className="hide-system-cursor professional-page"
+          className="hide-system-cursor professional-page overflow-y-scroll no-scrollbar"
         >
           {/* Enhanced UI Components */}
           <ScrollProgress />

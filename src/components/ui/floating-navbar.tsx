@@ -138,8 +138,11 @@ export const FloatingNav = ({
           )}
         >
           {/* Left - Name */}
-          <div className="font-semibold text-sm sm:text-base sign text-black dark:text-white drop-shadow-sm">
-            Avish Kaushik
+          <div className="hidden sm:block font-semibold text-sm sm:text-base sign text-black dark:text-white drop-shadow-sm">
+            AvishKaushik
+          </div>
+          <div className="sm:hidden font-semibold text-sm sm:text-base sign text-black dark:text-white drop-shadow-sm">
+            AK
           </div>
 
           {/* Center - Simple Animated Icons */}
@@ -207,7 +210,11 @@ export const FloatingNav = ({
                       className="text-black dark:text-white hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200 flex items-center justify-center"
                       aria-label={`Go to ${navItem.name} page`}
                     >
-                      <span className="block" {...iconAnimation} aria-hidden="true">
+                      <span
+                        className="block"
+                        {...iconAnimation}
+                        aria-hidden="true"
+                      >
                         {navItem.icon}
                       </span>
                     </a>

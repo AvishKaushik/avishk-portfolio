@@ -340,7 +340,7 @@ function TrophyCarousel({ items }: { items: typeof trophies }) {
   }, [currentIndex, nextItem, prevItem]);
 
   return (
-    <div className="relative w-full flex flex-col items-center justify-center overflow-hidden right-2">
+    <div className="relative w-full flex flex-col items-center justify-center overflow-hidden right-2 min-h-[850px]">
       <div className="absolute flex justify-between w-full px-4 md:px-8 lg:px-16 mb-10 z-20">
         <MagneticButton
           onClick={prevItem}

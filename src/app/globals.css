@@ -13,14 +13,21 @@ html {
 /* Ensure proper scrolling */
 body {
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */  
 }
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+
 
 /* Professional portfolio specific styles */
 .professional-page {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
+
 
 /* Improve touch scrolling on mobile */
 @media (max-width: 768px) {

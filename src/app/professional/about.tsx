@@ -247,6 +247,11 @@ export default function AboutSection() {
             <span className="text-xl group-hover:scale-110 transition-transform" aria-hidden="true">
               {icon}
             </span>
+            <div className="absolute bottom-10 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none">
+              <div className="bg-background/90 backdrop-blur-sm border border-border/40 rounded-lg px-3 py-1.5 text-xs font-medium whitespace-nowrap shadow-md">
+                {name}
+              </div>
+            </div>
           </a>
         ))}
       </div>
