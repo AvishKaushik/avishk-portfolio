@@ -20,7 +20,7 @@ I love turning complex problems into elegant solutions and building products tha
 📊 Grade: 84.8%
 📍 Foundation in science and mathematics`,
 
-    "college.txt": `🎓 VIT Bhopal University
+    "bachelors.txt": `🎓 Vellore Institute of Technology
 📅 2018 - 2022
 🎯 B.Tech in Computer Science Engineering
 📊 CGPA: 9.06/10
@@ -36,24 +36,6 @@ I love turning complex problems into elegant solutions and building products tha
   },
 
   projects: {
-    "eduhub.txt": `📚 EduHub - Collaborative Learning Platform
-🔗 https://avishkaushik.github.io/EduHub/
-
-🎯 A comprehensive learning management system for universities
-⚡ Built with React, Firebase, and modern web technologies
-📊 Features real-time quizzes, student analytics, and teacher dashboards
-👥 Enables seamless collaboration between students and educators
-🚀 Deployed and actively used by educational institutions`,
-
-    "docuguard.txt": `🛡️ DocuGuard - AI-Powered Document Security
-🔗 Private Enterprise Solution
-
-🤖 Intelligent document red-teaming pipeline on AWS
-⚡ Architecture: S3 → EventBridge → Step Functions → Lambda
-🧠 Uses Claude AI for risk analysis and content filtering
-📄 In-place PDF rewriting with PyMuPDF
-🔒 Enterprise-grade security and compliance features`,
-
     "intelliview.txt": `🎤 IntelliView - AI Mock Interview Platform
 🔗 https://intelliview-frontend.vercel.app/
 
@@ -62,43 +44,97 @@ I love turning complex problems into elegant solutions and building products tha
 📊 Advanced skill analytics and performance tracking
 🎯 Bias detection and fair assessment algorithms
 💼 Helping candidates prepare for technical interviews`,
+
+    "eduhub.txt": `📚 EduHub - Algorithm Visualization Platform
+🔗 https://avishkaushik.github.io/EduHub/
+
+🎯 Visualizes core computer science algorithms like sorting, pathfinding, and DSA concepts
+⚡ Built with React and modern web technologies
+📊 Provides an interactive and intuitive learning experience
+👨‍💻 Enables students to understand algorithms through visual simulation
+🚀 Ideal for learners to grasp complex concepts quickly`,
+
+    "sdg3_classifier.txt": `🌍 SDG3 Classifier - Open Source Health & Sustainability Tool
+🔗 https://github.com/avishkaushik/SDG3-Classifier
+
+🎯 Frontend platform to select GitHub repositories and submit SDG3 compliance requests
+⚡ Built with React and GitHub API integration
+📊 Helps developers make repositories SDG3-friendly and track sustainability contributions
+👥 Opens new opportunities for community-driven open source improvements
+🚀 Facilitates global collaboration for sustainable software development`,
+
+    "collab.txt": `🤝 Collab - Cross-Platform Group Forum & Communication App
+🔗 https://github.com/avishkaushik/Collab
+
+🎯 Mobile app for group discussions, forums, and real-time communication
+⚡ Built with Dart and Flutter for Android and iOS
+📊 Supports threaded conversations, notifications, and user interaction
+👥 Enhances collaboration and engagement among communities
+🚀 Intuitive design for seamless communication across devices`,
+
+    "csa_simulator.txt": `💻 CSA Simulator - Computer System Architecture Learning Tool
+🔗 https://github.com/avishkaushik/csa-simulator
+
+🎯 Simulates key components of a computer system including CPU, memory, and I/O devices
+⚡ Built with Java and Swing for graphical interaction
+📊 Visualizes registers, memory states, CPU instructions, and fault handling
+👨‍💻 Provides an interactive learning interface for architecture students
+🚀 Features number conversion utilities, memory management, and step-by-step instruction execution`,
   },
 
   experience: {
-    "societe.txt": `🏦 Societe Generale - Software Engineer
-📅 July 2021 - July 2024 (3 years)
+    "societe_engineer.txt": `🏦 Societe Generale Global Solution Center - Software Engineer
+📅 June 2022 - July 2024
 📍 Bangalore, India
 
 🚀 Key Achievements:
-• Led full-stack development of critical banking applications
-• Migrated legacy systems to modern cloud architecture
-• Built automation tools that reduced manual work by 60%
-• Implemented CI/CD pipelines using Jenkins and Docker
-• Mentored junior developers and conducted code reviews
+• Led migration of legacy Documentum database and complex structured data (2M+ records, 20+ document types) to internal cloud storage
+• Designed and implemented architecture for multi-layered microservices using Spring Boot, RabbitMQ, Kubernetes, and Docker
+• Migrated legacy LDAP authentication to OAuth2, enhancing security and performance
+• Built batch processes to read/store emails and documents into the cloud platform
+• Automated deployment pipelines with Jenkins, achieving 3x faster deployment
+• Conducted stakeholder meetings, requirements gathering, and created detailed documentation
+• Recognized with multiple internal awards for legacy decommissioning and cloud integration efforts
 
 💻 Tech Stack:
-• Java, Spring Boot, React, Angular
-• AWS, Docker, Kubernetes
-• PostgreSQL, MongoDB
-• Jenkins, Git, Jira`,
+• Java, Spring Boot, RabbitMQ
+• Kubernetes, Docker, Jenkins
+• OAuth2, LDAP
+• Microservices architecture, Cloud storage`,
 
-    "personal.txt": `🚀 Personal Projects & Freelance Work
-📅 2020 - Present
+    "societe_intern.txt": `🏦 Societe Generale Global Solution Center - Software Engineer Intern
+📅 Jan 2022 - June 2022
+📍 Bangalore, India
 
-🤖 GenAI Pipeline Development:
-• Built custom AI workflows using OpenAI and Claude APIs
-• Developed intelligent document processing systems
-• Created chatbots and virtual assistants
+🚀 Key Achievements:
+• Developed multiple Electronic Document Management System (EDMS) applications with diverse business logic
+• Gained proficiency in legacy decommissioning, project restructuring, and dependency analysis
+• Assisted in full-stack development, DevOps, and infra management
+• Participated in stakeholder meetings, requirement analysis, and documentation
+• Contributed to migration planning and architecture design for cloud transition
 
-🎮 Game Development:
-• Interactive portfolio game using Phaser.js
-• 2D platformer with custom physics and animations
-• Responsive design for multiple screen sizes
+💻 Tech Stack:
+• Java, Spring Boot
+• Kubernetes, Docker
+• Legacy systems, Cloud storage
+• Microservices architecture`,
 
-🌐 Web Development:
-• Modern React/Next.js applications
-• Full-stack solutions with Node.js and Python
-• Cloud deployment on AWS and Vercel`,
+    "kogniti.txt": `🎓 Kogniti - Software Engineer Intern
+📅 Oct 2021 - Jan 2022
+📍 Remote / Bangalore, India
+
+🚀 Key Achievements:
+• Developed an interactive educational platform for children based on game-driven learning
+• Built frontend with ReactJS, incorporating Redux, hooks, timers, and state management enhancements
+• Developed backend and managed database operations to support dynamic learning content
+• Conducted testing and feedback sessions with teachers and students to iteratively improve the platform
+• Improved UI/UX and performance, achieving 4x faster responsiveness
+• Delivered a fully functional interactive screen and learning flows for enhanced student engagement
+
+💻 Tech Stack:
+• ReactJS, Redux, JavaScript
+• Node.js, MongoDB
+• Frontend performance optimization and interactive UI design`,
   },
 
   skills: {
@@ -225,7 +261,7 @@ export default function TerminalPage() {
     return () => {
       clearInterval(interval);
     };
-  }, [splashSequence]);
+  }, []);
 
   // Splash screen transition
   useEffect(() => {
@@ -246,7 +282,8 @@ export default function TerminalPage() {
         "[32m🚀 QUICK START COMMANDS:[0m",
         "  [32mabout[0m      - Learn about me",
         "  [32mprojects[0m   - View my projects",
-        "  [32mcon tact[0m    - Get in touch",
+        "  [32mcontact[0m    - Get in touch",
+        "  [32mresume[0m     - Open Resume",
         "",
         "[90m💡 Type '[32mhelp[90m' for all available commands.[0m",
         "[90m💡 Use '[32mTab[90m' for autocompletion and '[32mArrow Keys[90m' for history.[0m",
@@ -373,14 +410,14 @@ export default function TerminalPage() {
     switch (command.toLowerCase()) {
       case "help":
         typeText(`[32m╔══════════════════════════════════════════════════════════════╗[0m
-[32m║[0m                    [32mAVISH KAUSHIK CLI v2.0[0m                    [32m║[0m
+[32m║[0m                    [32mAVISH KAUSHIK CLI v2.0[0m                           [32m║[0m
 [32m╚══════════════════════════════════════════════════════════════╝[0m
 
 [32m📁 NAVIGATION COMMANDS:[0m
   ls                    - List files and directories
-  cd <directory>        - Change directory
-  cat <file>           - Display file contents
-  pwd                  - Show current directory
+  cd <directory>                   - Change directory
+  cat <file>                  - Display file contents
+  pwd                   - Show current directory
 
 [32m🚀 DIRECT ACCESS COMMANDS:[0m
   [32mabout[0m                - About me
@@ -389,23 +426,23 @@ export default function TerminalPage() {
   [32mexperience[0m           - Work experience
   [32mskills[0m               - Technical skills
   [32mcontact[0m              - Contact information
+  [32mresume[0m               - Open resume in new tab
 
 [32m🛠️ UTILITY COMMANDS:[0m
   clear                - Clear terminal
-  open <url>           - Open URL in new tab
+  open <url>                - Open URL in new tab
   whoami               - Display current user
   
 [90m💡 PRO TIPS:[0m
   • Use [32mTab[0m for autocompletion
   • Use [32mArrow Keys[0m for command history
-  • Press [32mESC[0m to cancel typing
   • Commands are case-insensitive`);
         break;
 
       // Direct commands
       case "about":
         typeText(`[32m╔══════════════════════════════════════════════════════════════╗[0m
-[32m║[0m                        [33mABOUT ME[0m                           [32m║[0m
+[32m║[0m                        [33mABOUT ME[0m                                     [32m║[0m
 [32m╚══════════════════════════════════════════════════════════════╝[0m
 
 [37m${fileSystem["about.txt"]}[0m`);
@@ -419,21 +456,21 @@ export default function TerminalPage() {
           } else {
             print(`[31m❌ Education info not found: ${joined}[0m`);
             print(
-              "[90mAvailable options: [32mschool[90m, [32mcollege[90m, [32mmasters[0m"
+              "[90mAvailable options: [32mschool[90m, [32mbachelors[90m, [32mmasters[0m"
             );
           }
         } else {
           typeText(`[32m╔══════════════════════════════════════════════════════════════╗[0m
-[32m║[0m                    [32mEDUCATION MENU[0m                        [32m║[0m
+[32m║[0m                    [32mEDUCATION MENU[0m                                   [32m║[0m
 [32m╚══════════════════════════════════════════════════════════════╝[0m
 
 [32mAvailable education details:[0m
-  [32m• school[0m    - High school education
-  [32m• college[0m   - Undergraduate degree  
-  [32m• masters[0m   - Graduate studies
+  [32m• school[0m      - High school education
+  [32m• bachelors[0m   - Undergraduate degree  
+  [32m• masters[0m     - Graduate studies
 
 [90mUsage:[0m [32meducation[0m [32m<level>[0m
-[90mExample:[0m [32meducation college[0m`);
+[90mExample:[0m [32meducation masters[0m`);
         }
         break;
 
@@ -453,7 +490,7 @@ export default function TerminalPage() {
           }
         } else {
           typeText(`[32m╔══════════════════════════════════════════════════════════════╗[0m
-[32m║[0m                     [32mPROJECT PORTFOLIO[0m                     [32m║[0m
+[32m║[0m                     [32mPROJECT PORTFOLIO[0m                               [32m║[0m
 [32m╚══════════════════════════════════════════════════════════════╝[0m
 
 [32mAvailable projects:[0m
@@ -480,7 +517,7 @@ export default function TerminalPage() {
           }
         } else {
           typeText(`[32m╔══════════════════════════════════════════════════════════════╗[0m
-[32m║[0m                   [32mWORK EXPERIENCE[0m                        [32m║[0m
+[32m║[0m                   [32mWORK EXPERIENCE[0m                                   [32m║[0m
 [32m╚══════════════════════════════════════════════════════════════╝[0m
 
 [32mAvailable experience details:[0m
@@ -505,7 +542,7 @@ export default function TerminalPage() {
           }
         } else {
           typeText(`[32m╔══════════════════════════════════════════════════════════════╗[0m
-[32m║[0m                   [32mTECHNICAL SKILLS[0m                       [32m║[0m
+[32m║[0m                   [32mTECHNICAL SKILLS[0m                                  [32m║[0m
 [32m╚══════════════════════════════════════════════════════════════╝[0m
 
 [32mAvailable skill categories:[0m
@@ -521,7 +558,7 @@ export default function TerminalPage() {
 
       case "contact":
         typeText(`[32m╔══════════════════════════════════════════════════════════════╗[0m
-[32m║[0m                    [32mCONTACT INFO[0m                          [32m║[0m
+[32m║[0m                    [32mCONTACT INFO[0m                                     [32m║[0m
 [32m╚══════════════════════════════════════════════════════════════╝[0m
 
 [37m${fileSystem["contact.txt"]}[0m`);
@@ -531,6 +568,13 @@ export default function TerminalPage() {
         typeText(
           "[32mavish[0m - [37mSoftware Engineer & Full-Stack Developer[0m"
         );
+        break;
+
+      case "resume":
+        const resumeUrl = "/Avish_Kaushik_Resume.pdf"; // put your PDF in public folder
+        // Open in new tab
+        window.open(resumeUrl, "_blank");
+        typeText(`[32m✓ Resume opened in a new tab[0m`, 1);
         break;
 
       case "pwd":
@@ -624,7 +668,9 @@ export default function TerminalPage() {
         // Add user command with cyan color and background to distinguish from results
         setLines((prev) => [
           ...prev,
-          `<div class="command-line">${processAnsiColors(`${prompt} [32m${trimmed}[0m`)}</div>`,
+          `<div class="command-line">${processAnsiColors(
+            `${prompt} [32m${trimmed}[0m`
+          )}</div>`,
         ]);
         handleCommand(trimmed);
         setHistory((prev) => [...prev, trimmed]);
@@ -705,303 +751,297 @@ export default function TerminalPage() {
   return (
     <SplashGuard>
       <>
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-      <nav className="terminal-navbar">
-        <div className="nav-left">AK&apos;s CLI</div>
-        <div className="nav-center">
-          <button onClick={() => (window.location.href = "/professional")}>
-            Professional
-          </button>
-          <button onClick={() => (window.location.href = "/arcade")}>
-            Arcade
-          </button>
-        </div>
-      </nav>
-
-      <div
-        className="cli-screen"
-        onClick={() => {
-          if (document.activeElement !== inputRef.current) {
-            inputRef.current?.focus();
-          }
-        }}
-      >
-        {!showTerminal ? (
-          <div className="splash-screen">
-            {splashLines.map((line, idx) => (
-              <pre key={idx} className="terminal-line">
-                {line}
-              </pre>
-            ))}
+        <Head>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
+        <nav className="terminal-navbar">
+          <div className="nav-left">AK&apos;s CLI</div>
+          <div className="nav-center">
+            <button onClick={() => (window.location.href = "/professional")}>
+              Professional
+            </button>
+            <button onClick={() => (window.location.href = "/arcade")}>
+              Arcade
+            </button>
           </div>
-        ) : (
-          <div className="terminal" ref={terminalRef}>
-            {lines.map((line, idx) => (
-              <div
-                key={idx}
-                className="terminal-line"
-                dangerouslySetInnerHTML={{ __html: line }}
-              />
-            ))}
-            <div className="terminal-line input-line">
-              <span>{prompt} </span>
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                className="terminal-input"
-                autoFocus
-                ref={inputRef}
-                disabled={isTyping}
-                placeholder={isTyping ? "Typing... (Press ESC to cancel)" : ""}
-              />
-              {isTyping ? (
-                <span className="typing-cursor">▋</span>
-              ) : (
-                <span className="cursor">▋</span>
-              )}
+        </nav>
+
+        <div
+          className="cli-screen"
+          onClick={() => {
+            if (document.activeElement !== inputRef.current) {
+              inputRef.current?.focus();
+            }
+          }}
+        >
+          {!showTerminal ? (
+            <div className="splash-screen">
+              {splashLines.map((line, idx) => (
+                <pre key={idx} className="terminal-line">
+                  {line}
+                </pre>
+              ))}
             </div>
-          </div>
-        )}
-      </div>
+          ) : (
+            <div className="terminal" ref={terminalRef}>
+              {lines.map((line, idx) => (
+                <div
+                  key={idx}
+                  className="terminal-line"
+                  dangerouslySetInnerHTML={{ __html: line }}
+                />
+              ))}
+              <div className="terminal-line input-line">
+                <span>{prompt} </span>
+                <input
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  className="terminal-input"
+                  autoFocus
+                  ref={inputRef}
+                  disabled={isTyping}
+                  placeholder={isTyping ? "Typing... " : ""}
+                />
+                {/* <span className="cursor">▋</span> */}
+              </div>
+            </div>
+          )}
+        </div>
 
-      <style jsx>{`
-        html,
-        body {
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-        }
-
-        .splash-screen {
-          width: 100%;
-          height: 100%;
-          padding: 2rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          font-size: 1.1rem;
-          line-height: 1.6rem;
-          animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
+        <style jsx>{`
+          html,
+          body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
           }
-          to {
-            opacity: 1;
+
+          .splash-screen {
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 1.1rem;
+            line-height: 1.6rem;
+            animation: fadeIn 1s ease-in-out;
           }
-        }
 
-        .terminal-navbar {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 48px;
-          background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%);
-          color: #4ecdc4;
-          font-family: "Share Tech Mono", monospace;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0 1.5rem;
-          z-index: 1000;
-          box-shadow: 0 2px 10px rgba(78, 205, 196, 0.2);
-          border-bottom: 1px solid #4ecdc4;
-        }
-
-        .nav-left {
-          font-size: 1.2rem;
-          font-weight: bold;
-          letter-spacing: 2px;
-        }
-
-        .nav-center button {
-          margin: 0 0.5rem;
-          background: transparent;
-          border: 1px solid #4ecdc4;
-          padding: 6px 12px;
-          color: #4ecdc4;
-          font-family: inherit;
-          font-size: 0.95rem;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          border-radius: 4px;
-        }
-
-        .nav-center button:hover {
-          background: #4ecdc4;
-          color: #1a1a2e;
-          box-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
-        }
-
-        .cli-screen {
-          position: absolute;
-          top: 48px;
-          left: 0;
-          width: 100vw;
-          height: calc(100vh - 48px);
-          background: linear-gradient(
-            135deg,
-            #0f0f23 0%,
-            #1a1a2e 50%,
-            #16213e 100%
-          );
-          color: #e9ecef;
-          font-family: "Share Tech Mono", monospace;
-          display: flex;
-          align-items: flex-start;
-          justify-content: center;
-          overflow: hidden;
-        }
-
-        .terminal {
-          width: 100%;
-          height: 100%;
-          padding: 2rem;
-          overflow-y: auto;
-          overflow-x: hidden;
-          background: rgba(15, 15, 35, 0.95);
-          backdrop-filter: blur(10px);
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-          position: relative;
-          z-index: 2;
-          border-radius: 12px;
-          margin: 10px;
-          border: 1px solid rgba(78, 205, 196, 0.3);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        .terminal::-webkit-scrollbar {
-          display: none;
-        }
-
-        .terminal-line {
-          margin-bottom: 8px;
-          font-size: 1.1rem;
-          line-height: 1.6rem;
-          white-space: pre-wrap;
-          color: #e9ecef;
-        }
-
-        .input-line {
-          display: flex;
-          align-items: center;
-          flex-wrap: wrap;
-          background: rgba(78, 205, 196, 0.15);
-          padding: 8px 12px;
-          border-radius: 6px;
-          border-left: 3px solid #4ecdc4;
-          margin-top: 12px;
-          box-shadow: 0 2px 8px rgba(78, 205, 196, 0.2);
-          border: 1px solid rgba(78, 205, 196, 0.3);
-        }
-
-        .command-line {
-          background: rgba(78, 205, 196, 0.08);
-          padding: 4px 8px;
-          border-radius: 4px;
-          border-left: 2px solid rgba(78, 205, 196, 0.5);
-          margin: 2px 0;
-        }
-
-        .terminal-input {
-          display: inline;
-          background: transparent;
-          border: none;
-          outline: none;
-          color: #e9ecef;
-          font-family: inherit;
-          font-size: 1.1rem;
-          line-height: 1.6rem;
-          width: auto;
-          flex: 1;
-          min-width: 10ch;
-          caret-color: transparent; /* Hide default caret since we show custom cursor */
-        }
-
-        .terminal-input:disabled {
-          opacity: 0.6;
-        }
-
-        .terminal-input::placeholder {
-          color: #6c757d;
-          opacity: 0.7;
-        }
-
-        .typing-cursor,
-        .cursor {
-          animation: blink 0.8s infinite;
-          color: #4ecdc4;
-          margin-left: 2px;
-          font-weight: bold;
-        }
-
-        @keyframes blink {
-          0%,
-          50% {
-            opacity: 1;
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
           }
-          51%,
-          100% {
-            opacity: 0;
-          }
-        }
 
-        /* Matrix-like effect for special content */
-        .matrix-effect {
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(57, 255, 20, 0.1),
-            transparent
-          );
-          animation: matrix-sweep 3s infinite;
-        }
+          .terminal-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 48px;
+            background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%);
+            color: #4ecdc4;
+            font-family: "Share Tech Mono", monospace;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(78, 205, 196, 0.2);
+            border-bottom: 1px solid #4ecdc4;
+          }
 
-        @keyframes matrix-sweep {
-          0% {
-            background-position: -100% 0;
+          .nav-left {
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
           }
-          100% {
-            background-position: 100% 0;
-          }
-        }
 
-        /* Glitch effect for errors */
-        .glitch {
-          animation: glitch 0.3s;
-        }
+          .nav-center button {
+            margin: 0 0.5rem;
+            background: transparent;
+            border: 1px solid #4ecdc4;
+            padding: 6px 12px;
+            color: #4ecdc4;
+            font-family: inherit;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+          }
 
-        @keyframes glitch {
-          0% {
-            transform: translate(0);
+          .nav-center button:hover {
+            background: #4ecdc4;
+            color: #1a1a2e;
+            box-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
           }
-          20% {
-            transform: translate(-2px, 2px);
+
+          .cli-screen {
+            position: absolute;
+            top: 48px;
+            left: 0;
+            width: 100vw;
+            height: calc(100vh - 48px);
+            background: linear-gradient(
+              135deg,
+              #0f0f23 0%,
+              #1a1a2e 50%,
+              #16213e 100%
+            );
+            color: #e9ecef;
+            font-family: "Share Tech Mono", monospace;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            overflow: hidden;
           }
-          40% {
-            transform: translate(-2px, -2px);
+
+          .terminal {
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            position: relative;
+            z-index: 2;
+            border-radius: 12px;
+            margin: 10px;
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
           }
-          60% {
-            transform: translate(2px, 2px);
+
+          .terminal::-webkit-scrollbar {
+            display: none;
           }
-          80% {
-            transform: translate(2px, -2px);
+
+          .terminal-line {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            line-height: 1.6rem;
+            white-space: pre-wrap;
+            color: #e9ecef;
           }
-          100% {
-            transform: translate(0);
+
+          .input-line {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            background: rgba(78, 205, 196, 0.15);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-left: 3px solid #4ecdc4;
+            margin-top: 12px;
+            box-shadow: 0 2px 8px rgba(78, 205, 196, 0.2);
+            border: 1px solid rgba(78, 205, 196, 0.3);
           }
-        }
-      `}</style>
+
+          .command-line {
+            background: rgba(78, 205, 196, 0.08);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border-left: 2px solid rgba(78, 205, 196, 0.5);
+            margin: 2px 0;
+          }
+
+          .terminal-input {
+            display: inline;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #e9ecef;
+            font-family: inherit;
+            font-size: 1.1rem;
+            line-height: 1.6rem;
+            width: auto;
+            flex: 1;
+            min-width: 10ch;
+            caret-color: #4ecdc4;
+          }
+
+          .terminal-input:disabled {
+            opacity: 0.6;
+          }
+
+          .terminal-input::placeholder {
+            color: #6c757d;
+            opacity: 0.7;
+          }
+
+          .typing-cursor,
+          .cursor {
+            animation: blink 0.8s infinite;
+            color: #4ecdc4;
+          }
+
+          @keyframes blink {
+            0%,
+            50% {
+              opacity: 1;
+            }
+            51%,
+            100% {
+              opacity: 0;
+            }
+          }
+
+          /* Matrix-like effect for special content */
+          .matrix-effect {
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba(57, 255, 20, 0.1),
+              transparent
+            );
+            animation: matrix-sweep 3s infinite;
+          }
+
+          @keyframes matrix-sweep {
+            0% {
+              background-position: -100% 0;
+            }
+            100% {
+              background-position: 100% 0;
+            }
+          }
+
+          /* Glitch effect for errors */
+          .glitch {
+            animation: glitch 0.3s;
+          }
+
+          @keyframes glitch {
+            0% {
+              transform: translate(0);
+            }
+            20% {
+              transform: translate(-2px, 2px);
+            }
+            40% {
+              transform: translate(-2px, -2px);
+            }
+            60% {
+              transform: translate(2px, 2px);
+            }
+            80% {
+              transform: translate(2px, -2px);
+            }
+            100% {
+              transform: translate(0);
+            }
+          }
+        `}</style>
       </>
     </SplashGuard>
   );
