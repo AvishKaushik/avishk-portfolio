@@ -16,7 +16,6 @@ export class TechRing extends Phaser.GameObjects.Container {
   private techs: {
     label: string;
     sprite?: Phaser.Physics.Arcade.Image;
-    text: Phaser.GameObjects.Text;
     bg: Phaser.GameObjects.Rectangle; // <== new
     theta: number;
   }[] = [];
@@ -37,7 +36,7 @@ export class TechRing extends Phaser.GameObjects.Container {
       size: config.size ?? 40,
       fontSize: config.fontSize ?? "8px",
       physicsGroup: config.physicsGroup ?? scene.physics.add.staticGroup(),
-      showLabel: config.showLabel ?? false,
+      showLabel: false,
     };
 
     scene.add.existing(this);
@@ -45,7 +44,6 @@ export class TechRing extends Phaser.GameObjects.Container {
   }
 
   private buildRing(techs: string[]) {
-    const { fontSize } = this.cfg;
     const step = (2 * Math.PI) / techs.length;
 
     techs.forEach((label, idx) => {
@@ -70,17 +68,8 @@ export class TechRing extends Phaser.GameObjects.Container {
         this.cfg.physicsGroup.add(sprite);
       }
 
-      const text = this.scene.add
-        .text(x - this.x, y - this.y, label, {
-          fontFamily: '"PressStart2P"',
-          fontSize,
-          color: "#ffffff",
-          align: "center",
-        })
-        .setOrigin(0.5);
-      this.add(text);
 
-      this.techs.push({ label, sprite, text, bg, theta });
+      this.techs.push({ label, sprite, bg, theta });
     });
   }
 
@@ -103,8 +92,6 @@ export class TechRing extends Phaser.GameObjects.Container {
       }
 
       entry.bg.setPosition(x, y); // background moves!
-      entry.text.setPosition(x - this.x, y - this.y);
-      entry.text.setRotation(0);
     });
   }
 

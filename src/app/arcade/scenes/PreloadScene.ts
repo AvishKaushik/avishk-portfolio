@@ -180,7 +180,6 @@ export class PreloadScene extends Phaser.Scene {
       frameWidth: 128,
       frameHeight: 128,
     });
-    this.load.image("scanlines", "/game/assets/scanlines.png");
 
     essentialAssets.forEach((asset) => {
       this.loadTextureSafely(asset.key, asset.path, "image");

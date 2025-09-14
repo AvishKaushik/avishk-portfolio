@@ -89,13 +89,23 @@ export class StageScene extends Phaser.Scene {
       // Pick a character
       const groundY = height - 200; // adjust so feet touch tiles
       // this.player = new Player(this, 200, groundY, "pixelHero");
-      this.player = new Player(this, 200, height - 1000, "pixelHero", this.soundManager);
+      this.player = new Player(
+        this,
+        200,
+        height - 1000,
+        "pixelHero",
+        this.soundManager
+      );
       const playerSprite = this.player.getSprite();
       const skills = [
         { name: "Java", score: 5 },
-        { name: "ReactJS", score: 4 },
+        { name: "Spring Boot", score: 5 },
+        { name: "ReactJS", score: 5 },
+        { name: "Angular", score: 4 },
         { name: "Python", score: 3 },
         { name: "AWS", score: 4 },
+        { name: "MongoDB", score: 4 },
+        { name: "CI/CD", score: 4 }
       ];
 
       new ChestAsset(
@@ -109,24 +119,24 @@ export class StageScene extends Phaser.Scene {
       const experienceData = [
         {
           title: "Software Engineer",
-          company: "Societe Generale",
-          duration: "Jul 2021 – Jul 2024",
-          tech: "Java, React, Docker",
-          desc: "Migrated legacy systems.\nBuilt automation tools.",
+          company: "Societe Generale GSC",
+          duration: "Jul 2022 – Jul 2024",
+          tech: "Java, ReactJS, Angular, Docker",
+          desc: "Migrated legacy systems to cloud.\nBuilt FACT for cost tracking.\nDeveloped automation & cloud-native tools.",
         },
         {
-          title: "Frontend Intern",
-          company: "EduTech Inc.",
-          duration: "Jan 2021 – Jun 2021",
-          tech: "React, TypeScript",
-          desc: "Designed dashboard for students & teachers.",
+          title: "Software Engineer Intern",
+          company: "Societe Generale GSC",
+          duration: "Jan 2022 – Jun 2022",
+          tech: "Java, Spring Boot, PostgreSQL",
+          desc: "Built EduHub learning platform.\nDesigned dashboards & auth features.",
         },
         {
-          title: "Frontend Intern",
-          company: "EduTech Inc.",
-          duration: "Jan 2021 – Jun 2021",
-          tech: "React, TypeScript",
-          desc: "Designed dashboard for students & teachers.",
+          title: "Software Developer Intern",
+          company: "Kogniti",
+          duration: "Oct 2021 – Jan 2022",
+          tech: "NodeJs, ReactJs, MongoDB",
+          desc: "Developed classroom management system.\nAdded grading & analytics features.",
         },
       ];
 
@@ -295,7 +305,6 @@ export class StageScene extends Phaser.Scene {
 
       // const endZone = new EndZone(this, 9000, height - 96, this.soundManager);
       // endZone.setupOverlap(playerSprite);
-
 
       contactBricks.forEach(({ x, y, url, label }) => {
         const brick = new SpecialLinkBrick(this, x, y, url, label);

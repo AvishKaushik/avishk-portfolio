@@ -175,7 +175,7 @@ export class LandingScene extends Phaser.Scene {
       .setOrigin(0.5);
 
     this.add
-      .text(width / 2, height - Math.max(30, height * 0.04), "© 2024 Avish Kaushik", {
+      .text(width / 2, height - Math.max(30, height * 0.04), "© 2025 Avish Kaushik", {
         fontFamily: "'Press Start 2P'",
         fontSize: `${footerSubSize}px`,
         color: "#888888",

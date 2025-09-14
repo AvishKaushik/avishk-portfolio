@@ -22,14 +22,13 @@ const GameNavbar = () => {
       return newMute;
     });
   };
-  
+
   useEffect(() => {
     // Sync React state with Phaser on mount
     if (typeof window !== "undefined" && (window as any).gameAudio) {
       setIsMuted((window as any).gameAudio.isMuted());
     }
   }, []);
-  
 
   return (
     <motion.nav
@@ -46,13 +45,13 @@ const GameNavbar = () => {
 
         {/* Classic Controller Body - NES/SNES Style */}
         <motion.div
-          className="relative w-72 h-28 bg-gray-300 shadow-xl rounded-lg border-4 border-gray-400"
+          className="relative w-72 h-28 bg-gray-400 rounded-lg border-4 border-gray-500"
           whileHover={{ scale: 1.01 }}
           transition={{ duration: 0.2 }}
           style={{
-            background: "#d1d5db",
+            background: "#a1a1aa", // controller duller gray
             boxShadow:
-              "0 8px 16px rgba(0,0,0,0.3), inset 0 2px 0 rgba(255,255,255,0.3), inset 0 -2px 0 rgba(0,0,0,0.2)",
+              "0 8px 20px rgba(0,0,0,0.5), inset 0 2px 0 rgba(255,255,255,0.1), inset 0 -2px 0 rgba(0,0,0,0.2)",
           }}
         >
           {/* Classic Nintendo-style Logo */}
@@ -65,42 +64,31 @@ const GameNavbar = () => {
 
           {/* Center Mode Switch Buttons - Classic Style */}
           <div className="absolute left-1/2 transform -translate-x-1/2 bottom-10 flex space-x-2">
-            {/* <motion.button
-              onClick={() => router.push('/')}
-              className="w-8 h-8 bg-gray-200 text-gray-800 rounded-sm font-bold text-xs shadow-inner border-2 border-gray-400 hover:bg-gray-100 transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              title="Home"
-              style={{
-                boxShadow: 'inset 0 2px 0 rgba(255,255,255,0.5), inset 0 -2px 0 rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.2)'
-              }}
-            >
-              <IconHome className="h-4 w-4 mx-auto"/>
-            </motion.button> */}
-
+            {/* CV Button - bright */}
             <motion.button
               onClick={() => router.push("/professional")}
-              className="w-8 h-8 bg-gray-200 text-gray-800 rounded-sm font-bold text-xs shadow-inner border-2 border-gray-400 hover:bg-gray-100 transition-colors"
+              className="w-8 h-8 bg-gray-200 text-gray-900 rounded-sm font-bold text-xs shadow-inner border-2 border-gray-400 hover:bg-gray-100 transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               title="Professional"
               style={{
                 boxShadow:
-                  "inset 0 2px 0 rgba(255,255,255,0.5), inset 0 -2px 0 rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.2)",
+                  "inset 0 2px 0 rgba(255,255,255,0.6), inset 0 -2px 0 rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.5)",
               }}
             >
               <IconFileCv className="h-4 w-4 mx-auto" />
             </motion.button>
 
+            {/* CLI Button - bright */}
             <motion.button
               onClick={() => router.push("/terminal")}
-              className="w-8 h-8 bg-gray-200 text-gray-800 rounded-sm font-bold text-xs shadow-inner border-2 border-gray-400 hover:bg-gray-100 transition-colors"
+              className="w-8 h-8 bg-gray-200 text-gray-900 rounded-sm font-bold text-xs shadow-inner border-2 border-gray-400 hover:bg-gray-100 transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               title="Terminal"
               style={{
                 boxShadow:
-                  "inset 0 2px 0 rgba(255,255,255,0.5), inset 0 -2px 0 rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.2)",
+                  "inset 0 2px 0 rgba(255,255,255,0.6), inset 0 -2px 0 rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.5)",
               }}
             >
               <IconTerminal2 className="h-4 w-4 mx-auto" />
@@ -108,7 +96,7 @@ const GameNavbar = () => {
           </div>
 
           {/* Classic Start/Select/Volume Buttons */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 flex space-x-2 bottom-3">
+          <div className="absolute left-1/2 transform -translate-x-1/2 flex space-x-2 bottom-3 opacity-70">
             <motion.button
               onClick={handleMuteToggle}
               className="w-6 h-3 bg-gray-600 rounded-sm shadow-inner border border-gray-700 flex items-center justify-center hover:bg-gray-500 transition-colors"
@@ -156,7 +144,7 @@ const GameNavbar = () => {
 
           {/* Left D-Pad - Classic NES Style */}
           <div
-            className="absolute w-16 h-16 rounded-sm left-2 top-4 border-2 border-gray-500 bg-gray-400"
+            className="absolute w-16 h-16 rounded-sm left-2 top-4 border-2 border-gray-500 bg-gray-400 opacity-70"
             style={{
               boxShadow:
                 "inset 0 2px 0 rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)",
@@ -172,13 +160,13 @@ const GameNavbar = () => {
 
           {/* Right Action Buttons - Classic SNES Colors */}
           <div
-            className="absolute w-16 h-16 rounded-sm left-52 top-4 border-2 border-gray-500 bg-gray-400 flex items-center justify-center relative"
+            className="absolute w-16 h-16 rounded-sm left-52 top-4 border-2 border-gray-500 bg-gray-400 flex items-center justify-center relative opacity-70"
             style={{
               boxShadow:
                 "inset 0 2px 0 rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)",
             }}
           >
-            {/* X Button - Top (Purple like SNES) */}
+            {/* X Button - Top (Purple) */}
             <motion.div
               className="absolute top-1 left-1/2 transform -translate-x-1/2"
               whileHover={{ scale: 1.05 }}
@@ -195,7 +183,7 @@ const GameNavbar = () => {
               </div>
             </motion.div>
 
-            {/* A Button - Bottom (Red like SNES) */}
+            {/* A Button - Bottom (Red) */}
             <motion.div
               className="absolute bottom-1 left-1/2 transform -translate-x-1/2"
               whileHover={{ scale: 1.05 }}
@@ -212,7 +200,7 @@ const GameNavbar = () => {
               </div>
             </motion.div>
 
-            {/* Y Button - Left (Green like SNES) */}
+            {/* Y Button - Left (Green) */}
             <motion.div
               className="absolute left-1 top-1/2 transform -translate-y-1/2"
               whileHover={{ scale: 1.05 }}
@@ -229,7 +217,7 @@ const GameNavbar = () => {
               </div>
             </motion.div>
 
-            {/* B Button - Right (Blue like SNES) */}
+            {/* B Button - Right (Blue) */}
             <motion.div
               className="absolute right-1 top-1/2 transform -translate-y-1/2"
               whileHover={{ scale: 1.05 }}

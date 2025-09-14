@@ -15,13 +15,13 @@ export class ExperienceBoard extends Phaser.GameObjects.Container {
     this.setDepth(5);
 
     // Clean modern background
-    const board = scene.add.rectangle(0, 0, 540, 340, 0x1a1a1a, 0.95)
+    const board = scene.add.rectangle(0, 0, 540, 350, 0x1a1a1a, 0.95)
       .setStrokeStyle(2, 0xffffff)
       .setOrigin(0.5);
     this.add(board);
 
     // Title Label
-    const title = scene.add.text(0, -145, 'EXPERIENCE', {
+    const title = scene.add.text(0, -155, 'EXPERIENCE', {
       fontFamily: 'monospace',
       fontSize: '16px',
       color: '#ffffff',

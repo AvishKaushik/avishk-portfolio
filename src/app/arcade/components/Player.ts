@@ -7,6 +7,7 @@ import {
   createCharacterAnimations,
 } from "@/app/arcade/components/characters";
 import { SoundManager } from "./SoundManager";
+import { MobileControls } from "./MobileControls";
 
 export class Player {
   private scene: Phaser.Scene;
@@ -23,6 +24,8 @@ export class Player {
   private inAir = false;
   private onLadder = false;
   private isAttacking = false;
+
+  
 
   constructor(
     scene: Phaser.Scene,
@@ -77,6 +80,7 @@ export class Player {
     const speed = this.runKey.isDown ? 480 : 400;
     const { left, right, up, down } = this.cursors;
     const body = this.sprite.body as Phaser.Physics.Arcade.Body;
+    const mobile = MobileControls.getInstance();
 
     // ── Ladder overlap check first ────────────────────────
     if (this.ladderGroup) {
@@ -107,7 +111,7 @@ export class Player {
     const onGround = body.blocked.down;
 
     // ── Attack ───────────────────────────────────────────
-    if (Phaser.Input.Keyboard.JustDown(this.attackKey) && !this.attackCooldown && this.meta.actions.attack) {
+    if ((Phaser.Input.Keyboard.JustDown(this.attackKey) || mobile.attackDown) && !this.attackCooldown && this.meta.actions.attack) {
       this.isAttacking = true;
       this.attackCooldown = true;
       body.setVelocityX(0);
@@ -126,10 +130,10 @@ export class Player {
     if (this.isAttacking) return;
 
     // ── Horizontal movement ──────────────────────────────
-    if (left?.isDown) {
+    if (mobile.leftDown || left?.isDown) {
       body.setVelocityX(-speed);
       this.sprite.flipX = true;
-    } else if (right?.isDown) {
+    } else if (mobile.rightDown || right?.isDown) {
       body.setVelocityX(speed);
       this.sprite.flipX = false;
     } else {
@@ -137,7 +141,7 @@ export class Player {
     }
 
     // ── Jump ─────────────────────────────────────────────
-    if (up?.isDown && onGround) {
+    if ((mobile.jumpDown || up?.isDown) && onGround) {
       body.setVelocityY(-520);
       this.inAir = true;
       this.playAnim('jump');

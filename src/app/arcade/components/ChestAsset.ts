@@ -6,6 +6,7 @@
 
 import * as Phaser from 'phaser';
 import { ScrollPopup } from './ScrollPopup';
+import { MobileControls } from './MobileControls';
 
 export class ChestAsset extends Phaser.GameObjects.Container {
   private chest: Phaser.GameObjects.Sprite;
@@ -109,8 +110,9 @@ export class ChestAsset extends Phaser.GameObjects.Container {
 
     const dist = Phaser.Math.Distance.Between(this.x, this.y, this.player.x, this.player.y);
     const overlapping = dist < 80; // larger radius
+    const mobile = MobileControls.getInstance();
 
-    if (overlapping && Phaser.Input.Keyboard.JustDown(this.eKey)) {
+    if (overlapping && (Phaser.Input.Keyboard.JustDown(this.eKey) || mobile.interactDown)) {
       this.toggleChest();
     }
 
