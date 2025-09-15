@@ -7,7 +7,7 @@ import { SplashProvider } from "@/contexts/SplashContext";
 import "@fontsource/share-tech-mono";
 
 export const metadata: Metadata = {
-  title: "Avish Kaushik - Full Stack Developer",
+  title: "Avish Kaushik",
   description:
     "I am Avish Kaushik, a Full Stack Developer with a passion for building innovative web applications.",
 };
